@@ -6,6 +6,12 @@ import Image from "next/image";
 import { TextEffect } from "@/components/ui/text-effect";
 import { AnimatedGroup } from "../ui/Animated-group";
 import { Header } from "./Header";
+import { Dancing_Script } from "next/font/google";
+
+const dancingScript = Dancing_Script({
+  weight: "700",
+  subsets: ["latin"],
+});
 
 const transitionVariants = {
   item: {
@@ -86,7 +92,7 @@ export default function Hero() {
                     className="hover:bg-background dark:hover:border-t-border bg-muted group mx-auto flex w-fit items-center gap-4 rounded-full border p-1 pl-4 shadow-md shadow-zinc-950/5 transition-colors duration-300 dark:border-t-white/5 dark:shadow-zinc-950"
                   >
                     <span className="text-foreground text-sm">
-                      Survey Smarter Not Harder
+                      Collaborate Smarter, Draw Faster
                     </span>
                     <span className="dark:border-background block h-4 w-0.5 border-l bg-white dark:bg-zinc-700"></span>
 
@@ -109,7 +115,7 @@ export default function Hero() {
                   as="h1"
                   className="mt-8 text-balance text-6xl md:text-7xl lg:mt-16 xl:text-[5.25rem]"
                 >
-                  Your Survey, Your Strategy
+                  Your Ideas, Our Canvas
                 </TextEffect>
                 <TextEffect
                   per="line"
@@ -119,8 +125,9 @@ export default function Hero() {
                   as="p"
                   className="mx-auto mt-8 max-w-2xl text-balance text-lg"
                 >
-                  Create AI-powered surveys, reach your audience fast and get
-                  smart insights to drive better decisions.
+                  CollabDraw is a lightning-fast, collaborative digital canvas
+                  where your creativity meets simplicity. Brainstorm, doodle,
+                  and create seamlessly with your team in real-time.
                 </TextEffect>
 
                 <AnimatedGroup
@@ -159,7 +166,7 @@ export default function Hero() {
                     className="h-10.5 rounded-xl px-5"
                   >
                     <Link href="#link">
-                      <span className="text-nowrap">View a demo</span>
+                      <span className="text-nowrap">Explore Demo</span>
                     </Link>
                   </Button>
                 </AnimatedGroup>
@@ -206,17 +213,7 @@ export default function Hero() {
         </section>
         <section className="bg-background pb-16 pt-16 md:pb-32">
           <div className="group relative m-auto max-w-5xl px-6">
-            <div className="absolute inset-0 z-10 flex scale-95 items-center justify-center opacity-0 duration-500 group-hover:scale-100 group-hover:opacity-100">
-              <Link
-                href="/"
-                className="block text-sm duration-150 hover:opacity-75"
-              >
-                <span> Meet Our Customers</span>
-
-                <ChevronRight className="ml-1 inline-block size-3" />
-              </Link>
-            </div>
-            <div className="group-hover:blur-xs mx-auto mt-12 grid max-w-2xl grid-cols-4 gap-x-12 gap-y-8 transition-all duration-500 group-hover:opacity-50 sm:gap-x-16 sm:gap-y-14">
+            <div className=" mx-auto mt-12 grid max-w-2xl grid-cols-4 gap-x-12 gap-y-8 transition-all duration-500 group-hover:opacity-70 sm:gap-x-16 sm:gap-y-14">
               <div className="flex">
                 <img
                   className="mx-auto h-5 w-fit dark:invert"
@@ -230,21 +227,13 @@ export default function Hero() {
               <div className="flex">
                 <img
                   className="mx-auto h-4 w-fit dark:invert"
-                  src="https://html.tailus.io/blocks/customers/column.svg"
-                  alt="Column Logo"
+                  src="https://html.tailus.io/blocks/customers/zapier.svg"
+                  alt="Zapier Logo"
                   height="16"
                   width="auto"
                 />
               </div>
-              <div className="flex">
-                <img
-                  className="mx-auto h-4 w-fit dark:invert"
-                  src="https://html.tailus.io/blocks/customers/github.svg"
-                  alt="GitHub Logo"
-                  height="16"
-                  width="auto"
-                />
-              </div>
+
               <div className="flex">
                 <img
                   className="mx-auto h-5 w-fit dark:invert"
@@ -256,27 +245,27 @@ export default function Hero() {
               </div>
               <div className="flex">
                 <img
-                  className="mx-auto h-5 w-fit dark:invert"
-                  src="https://html.tailus.io/blocks/customers/lemonsqueezy.svg"
-                  alt="Lemon Squeezy Logo"
+                  className="h-5 w-fit dark:invert"
+                  src="https://html.tailus.io/blocks/customers/vercel.svg"
+                  alt="Vercel Logo"
+                  height="20"
+                  width="auto"
+                ></img>
+              </div>
+              <div className="flex">
+                <img
+                  className="mx-auto h-4 w-fit dark:invert"
+                  src="https://assets.streamlinehq.com/image/private/w_300,h_300,ar_1/f_auto/v1/icons/logos/clerk-uvna1mxd54k50cohb8o2i.png/clerk-nzr7956knokwjx841f6yye.png?_a=DATAg1AAZAA0"
+                  alt="Clerk Logo"
                   height="20"
                   width="auto"
                 />
               </div>
               <div className="flex">
                 <img
-                  className="mx-auto h-4 w-fit dark:invert"
-                  src="https://html.tailus.io/blocks/customers/laravel.svg"
-                  alt="Laravel Logo"
-                  height="16"
-                  width="auto"
-                />
-              </div>
-              <div className="flex">
-                <img
                   className="mx-auto h-7 w-fit dark:invert"
-                  src="https://html.tailus.io/blocks/customers/lilly.svg"
-                  alt="Lilly Logo"
+                  src="https://www.svgrepo.com/show/446899/mercedes-benz.svg"
+                  alt="Mercedes Logo"
                   height="28"
                   width="auto"
                 />
@@ -287,6 +276,16 @@ export default function Hero() {
                   className="mx-auto h-6 w-fit dark:invert"
                   src="https://html.tailus.io/blocks/customers/openai.svg"
                   alt="OpenAI Logo"
+                  height="24"
+                  width="auto"
+                />
+              </div>
+
+              <div className="flex">
+                <img
+                  className="mx-auto h-6 w-fit dark:invert"
+                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Adidas_Logo.svg/1088px-Adidas_Logo.svg.png?20240107104015"
+                  alt="Addidas Logo"
                   height="24"
                   width="auto"
                 />

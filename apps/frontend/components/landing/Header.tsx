@@ -3,19 +3,28 @@ import Link from "next/link";
 import { Logo } from "@/components/landing/Logo";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "../ui/dialog";
 
 const menuItems = [
   { name: "Features", href: "#features" },
-  { name: "FAQs", href: "#faq" },
+  { name: "How it works", href: "#demo" },
 ];
 
 export const Header = () => {
   const [menuState, setMenuState] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
@@ -25,9 +34,8 @@ export const Header = () => {
 
   const handleSmoothScroll = (href: string, e: React.MouseEvent) => {
     e.preventDefault();
-    setMenuState(false); // Close mobile menu
+    setMenuState(false);
 
-    // Handle scroll to top for home link
     if (href === "/" || href === "#top") {
       window.scrollTo({
         top: 0,
@@ -50,6 +58,18 @@ export const Header = () => {
         behavior: "smooth",
       });
     }
+  };
+
+  const handleMenuClick = (href: string, e: React.MouseEvent) => {
+    e.preventDefault();
+    setMenuState(false);
+
+    if (href === "#demo") {
+      setIsVideoOpen(true);
+      return;
+    }
+
+    handleSmoothScroll(href, e);
   };
 
   // Handle logo click to scroll to top
@@ -103,7 +123,7 @@ export const Header = () => {
                   <li key={index}>
                     <Link
                       href={item.href}
-                      onClick={(e) => handleSmoothScroll(item.href, e)}
+                      onClick={(e) => handleMenuClick(item.href, e)}
                       className="text-muted-foreground hover:text-accent-foreground block duration-150 cursor-pointer"
                     >
                       <span>{item.name}</span>
@@ -120,7 +140,7 @@ export const Header = () => {
                     <li key={index}>
                       <Link
                         href={item.href}
-                        onClick={(e) => handleSmoothScroll(item.href, e)}
+                        onClick={(e) => handleMenuClick(item.href, e)}
                         className="text-muted-foreground hover:text-accent-foreground block duration-150 cursor-pointer"
                       >
                         <span>{item.name}</span>
@@ -163,6 +183,21 @@ export const Header = () => {
           </div>
         </div>
       </nav>
+      <section id="demo">
+        <Dialog open={isVideoOpen} onOpenChange={setIsVideoOpen}>
+          <DialogContent className="max-w-3xl max-h-3xl p-0 sm:p-4">
+            <div className="relative w-full h-full aspect-video">
+              <iframe
+                className="w-full h-full"
+                src="https://www.youtube.com/embed/oYHdKBfTwbE"
+                title="How it works"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
+          </DialogContent>
+        </Dialog>
+      </section>
     </header>
   );
 };
