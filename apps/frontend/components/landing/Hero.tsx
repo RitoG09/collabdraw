@@ -4,7 +4,7 @@ import { ArrowRight, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { TextEffect } from "@/components/ui/text-effect";
-import { AnimatedGroup } from "../ui/Animated-group";
+import { AnimatedGroup } from "../ui/animated-group";
 import { Header } from "./Header";
 import { Dancing_Script } from "next/font/google";
 

@@ -27,12 +27,13 @@ export const signup = async (req: Request, res: Response) => {
       data: { username, email, password: hashedPass },
     });
     const token = generateToken(user.id);
-    if (!token.error) {
+    if (token?.error) {
       emitError({
         res,
-        error: `Error while generating token`,
+        error: `${token.error}`,
         statusCode: 400,
       });
+      return;
     }
     emitSuccess({
       res,
@@ -69,12 +70,13 @@ export const signin = async (req: Request, res: Response) => {
       return;
     }
     const token = generateToken(user.id);
-    if (!token.error) {
+    if (token?.error) {
       emitError({
         res,
-        error: `Error while generating token`,
+        error: `${token.error}`,
         statusCode: 400,
       });
+      return;
     }
     emitSuccess({
       res,
@@ -101,7 +103,7 @@ export const profile = async (req: customRequest, res: Response) => {
 
     emitSuccess({
       res,
-      result: { user: { name: user.username, email: user.email } },
+      result: { user: { username: user.username, email: user.email } },
       message: "User data has been sent successfully",
     });
     return;

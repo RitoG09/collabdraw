@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import { Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ui/theme-provider";
+import { Toaster } from "react-hot-toast";
 
 // const geistSans = localFont({
 //   src: "./fonts/GeistVF.woff",
@@ -37,6 +38,17 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <Toaster
+            position="top-right"
+            toastOptions={{
+              duration: 5000,
+              style: {
+                border: "1px solid #737373",
+                background: "#d4a5a5",
+                color: "#1c1b1b",
+              },
+            }}
+          />
           {children}
         </ThemeProvider>
       </body>
