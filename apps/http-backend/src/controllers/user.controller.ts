@@ -91,23 +91,19 @@ export const signin = async (req: Request, res: Response) => {
 };
 
 export const profile = async (req: customRequest, res: Response) => {
-  try {
-    const userId = req.userId;
-    const user = await prismaClient.user.findUnique({
-      where: { id: userId },
-    });
-    if (!user) {
-      emitError({ res, error: "User not found", statusCode: 404 });
-      return;
-    }
-
-    emitSuccess({
-      res,
-      result: { user: { username: user.username, email: user.email } },
-      message: "User data has been sent successfully",
-    });
+  const userId = req.userId;
+  const user = await prismaClient.user.findFirst({
+    where: { id: userId },
+  });
+  if (!user) {
+    emitError({ res, error: "User not found", statusCode: 404 });
     return;
-  } catch (error) {
-    emitError({ res, error: `Your profile is not found here` });
   }
+
+  emitSuccess({
+    res,
+    result: { user: { username: user.username, email: user.email } },
+    message: "User data has been sent successfully",
+  });
+  return;
 };

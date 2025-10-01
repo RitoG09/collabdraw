@@ -28,13 +28,12 @@ type signupForm = z.infer<typeof signUpSchema>;
 
 export default function Signup() {
   const router = useRouter();
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const {
     register,
     handleSubmit,
-    watch,
-    formState: { errors },
+    reset,
+    formState: { errors, isSubmitting },
   } = useForm<signupForm>({
     resolver: zodResolver(signUpSchema),
   });
@@ -60,6 +59,7 @@ export default function Signup() {
           "Something went wrong during signin. Kindly check your credentials and try again!"
       );
     } finally {
+      reset();
     }
   };
 
