@@ -5,17 +5,14 @@ import { AnimatePresence, motion } from "motion/react";
 import { useOutsideClick } from "../hooks/use-outside-click";
 import JoinRoom from "./own/draw-space/join-room";
 import toast from "react-hot-toast";
-
-function joinRoom(roomId: string) {
-  // Redirect logic or API call — your own implementation
-  window.location.href = `/room/${roomId}`;
-}
+import CreateRoom from "./own/draw-space/create-room";
 
 export default function ExpandableCardDemoGrid() {
   const [active, setActive] = useState<(typeof cards)[number] | boolean | null>(
     null
   );
   const [joinRoomOpen, setJoinRoomOpen] = useState(false);
+  const [createRoomOpen, setCreateRoomOpen] = useState(false);
   const id = useId();
   const ref = useRef<HTMLDivElement>(null);
 
@@ -157,6 +154,8 @@ export default function ExpandableCardDemoGrid() {
                   <div className="pt-2 relative px-5 py-5">
                     {active.title === "Join a Room" ? (
                       <JoinRoom />
+                    ) : active.title === "Create your Room" ? (
+                      <CreateRoom />
                     ) : (
                       <motion.a
                         layout
@@ -176,6 +175,8 @@ export default function ExpandableCardDemoGrid() {
                 <div className="pt-4 relative px-4">
                   {active.title === "Join a Room" ? (
                     joinRoomOpen && <JoinRoom />
+                  ) : active.title === "Create your Room" ? (
+                    createRoomOpen && <CreateRoom />
                   ) : (
                     <motion.div
                       layout
@@ -307,20 +308,5 @@ const cards = [
     src: "https://www.svgrepo.com/show/81184/plus.svg",
     ctaText: "Create",
     ctaLink: "https://ui.aceternity.com/templates",
-    content: () => {
-      return (
-        <p>
-          Metallica, an iconic American heavy metal band, is renowned for their
-          powerful sound and intense performances that resonate deeply with
-          their audience. Formed in Los Angeles, California, they have become a
-          cultural icon in the heavy metal music industry. <br /> <br /> Their
-          songs often reflect themes of aggression, social issues, and personal
-          struggles, capturing the essence of the heavy metal genre. With a
-          career spanning over four decades, Metallica has released numerous hit
-          albums and singles that have garnered them a massive fan following
-          both in the United States and abroad.
-        </p>
-      );
-    },
   },
 ];

@@ -19,7 +19,7 @@ export default function useProtection() {
     const getUser = async () => {
       try {
         const response = await verifyUser(token);
-        const { user } = response; //destruction: user=response.user
+        const { user } = response; //dest: user=response.user
         setUserData({
           username: user.username,
           email: user.email,
