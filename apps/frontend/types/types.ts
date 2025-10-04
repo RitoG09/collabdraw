@@ -38,3 +38,8 @@ export interface SocketStatusStore {
   socketStatus: ESocketStatus;
   setSocketStatus: (status: ESocketStatus) => void;
 }
+
+export type ShapeTypeStore = {
+  activeTool: ToolType;
+  setActive: (shapeType: ToolType) => void;
+}
