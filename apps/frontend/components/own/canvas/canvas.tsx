@@ -11,6 +11,12 @@ import { useRouter } from "next/navigation";
 import { DimentionType, ShapeType } from "@repo/common/types";
 import rough from "roughjs";
 import { useRef } from "react";
+import {
+  SocketStatusStore,
+  ESocketStatus,
+  Action,
+  TextInput,
+} from "@/types/types";
 
 function getInitialShapes(): ShapeType[] {
   const rawCanvas = localStorage.getItem("current-canvas");

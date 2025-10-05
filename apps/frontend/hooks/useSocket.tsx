@@ -150,7 +150,7 @@ export default function useSocket() {
     (roomId: string) => {
       sendMessage("leaveRoom", { roomId });
       wsInstance?.close();
-      router.push("/draw-mode");
+      router.push("/draw-space");
     },
     [router]
   );

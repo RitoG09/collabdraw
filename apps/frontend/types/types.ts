@@ -1,6 +1,7 @@
 import { ShapeType } from "@repo/common/types";
 import { SetStateAction } from "react";
 import { StoreApi, UseBoundStore } from "zustand";
+import { DimentionType } from "@repo/common/types";
 
 export type User = {
   username: string;
@@ -39,7 +40,35 @@ export interface SocketStatusStore {
   setSocketStatus: (status: ESocketStatus) => void;
 }
 
+export type ToolType =
+  | "rectangle"
+  | "circle"
+  | "diamond"
+  | "arrow"
+  | "line"
+  | "pencil"
+  | "text"
+  | "eraser"
+  | "pan"
+  | "select";
+
 export type ShapeTypeStore = {
   activeTool: ToolType;
   setActive: (shapeType: ToolType) => void;
-}
+};
+
+export type Action = "none" | "move" | "draw" | "resize" | "erase" | "pan";
+
+export type TextInput = { cords: DimentionType; value: string };
+
+export type IndexStore = {
+  index: number;
+  setIndex: (updater: number | ((prev: number) => number)) => void;
+};
+
+export type CurrCanvasStore = {
+  currCanvas: ShapeType[][];
+  setCurrCanvas: (
+    updater: ShapeType[][] | ((prev: ShapeType[][]) => ShapeType[][])
+  ) => void;
+};
