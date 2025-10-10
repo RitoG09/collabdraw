@@ -52,7 +52,7 @@ export default function Signup() {
       });
       localStorage.setItem("token", response.token.encoded);
       toast.success("Your account has been created successfully!");
-      router.push("/canvas");
+      router.push("/draw-space");
     } catch (error: any) {
       toast.error(
         error.message ||

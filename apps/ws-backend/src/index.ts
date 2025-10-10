@@ -20,15 +20,17 @@ wss.on("connection", async function connection(ws, request) {
   if (!url) {
     return;
   }
+  console.log(url);
 
   const queryParams = new URLSearchParams(url.split("?")[1]);
   const token = queryParams.get("token") || "";
-  const roomId = queryParams.get("roomId") || "";
+  const roomId = queryParams.get("roomId") || null;
 
+  console.log("Extracted token:", token);
   const userId = authUser(token);
   if (!userId) {
     console.error("Connection rejected: invalid user");
-    ws.close(1008, "User not authenticated");
+    ws.close(4001, "Invalid user token");
     return;
   }
 
@@ -38,7 +40,7 @@ wss.on("connection", async function connection(ws, request) {
     },
   });
   if (!user) {
-    ws.close();
+    ws.close(4002, "User not found.");
     return;
   }
   console.log("roomId: ", roomId);

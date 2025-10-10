@@ -153,7 +153,7 @@ export default function Hero() {
                       size="lg"
                       className="rounded-xl px-5 text-base"
                     >
-                      <Link href="/signup">
+                      <Link href="/signin">
                         <span className="text-nowrap">Get Started</span>
                       </Link>
                     </Button>

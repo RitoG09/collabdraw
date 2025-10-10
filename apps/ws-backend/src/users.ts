@@ -13,35 +13,60 @@ const users = new Map<string, IUser>();
 const shapeOperationQueue: IShapeOperation[] = [];
 let isProcessingQueue = false;
 
+// export const processShapeQueue = async () => {
+//   if (isProcessingQueue || shapeOperationQueue.length === 0) {
+//     return;
+//   }
+//   isProcessingQueue = true;
+
+//   const operation: any = shapeOperationQueue.shift();
+
+//   try {
+//     if (operation.type === "create") {
+//       await prismaClient.shape.create({ data: operation.data });
+//     } else if (operation.type === "update") {
+//       await prismaClient.shape.update({
+//         where: {
+//           id: operation.data.id,
+//         },
+//         data: {
+//           shape: operation.data.shape,
+//         },
+//       });
+//     } else if (operation.type === "delete") {
+//       await prismaClient.shape.delete({ where: { id: operation.shapeId } });
+//     }
+//   } catch (error) {
+//     console.error("error");
+//   }
+
+//   isProcessingQueue = false;
+//   setImmediate(processShapeQueue);
+// };
+
 export const processShapeQueue = async () => {
-  if (isProcessingQueue || shapeOperationQueue.length === 0) {
-    return;
-  }
+  if (isProcessingQueue) return;
   isProcessingQueue = true;
 
-  const operation: any = shapeOperationQueue.shift();
-
-  try {
-    if (operation.type === "create") {
-      await prismaClient.shape.create({ data: operation.data });
-    } else if (operation.type === "update") {
-      await prismaClient.shape.update({
-        where: {
-          id: operation.data.id,
-        },
-        data: {
-          shape: operation.data.shape,
-        },
-      });
-    } else if (operation.type === "delete") {
-      await prismaClient.shape.delete({ where: { id: operation.shapeId } });
+  while (shapeOperationQueue.length > 0) {
+    const operation: any = shapeOperationQueue.shift();
+    try {
+      if (operation.type === "create") {
+        await prismaClient.shape.create({ data: operation.data });
+      } else if (operation.type === "update") {
+        await prismaClient.shape.update({
+          where: { id: operation.data.id },
+          data: { shape: operation.data.shape },
+        });
+      } else if (operation.type === "delete") {
+        await prismaClient.shape.delete({ where: { id: operation.shapeId } });
+      }
+    } catch (error) {
+      console.error("Error processing shape operation:", error);
     }
-  } catch (error) {
-    console.error("error");
   }
 
   isProcessingQueue = false;
-  setImmediate(processShapeQueue);
 };
 
 export const establishConnection = (
@@ -49,7 +74,7 @@ export const establishConnection = (
   userId: string,
   username: string
 ) => {
-  users.set(username, { ws, userId, username, rooms: new Set() });
+  users.set(userId, { ws, userId, username, rooms: new Set() });
   console.log(
     `connection established for ${username} and total size of the room is ${users.size}`
   );
@@ -69,7 +94,7 @@ export const getUser = (userId: string) => {
 
 export const roomExists = async (roomId: string) => {
   try {
-    if (!roomId || typeof roomId === "string") return false;
+    if (!roomId || typeof roomId !== "string") return false;
     const room = await prismaClient.room.findFirst({
       where: { linkId: roomId },
     });

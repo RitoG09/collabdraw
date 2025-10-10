@@ -13,7 +13,7 @@ export const useCurrCanvasStore = create<CurrCanvasStore>()(
         })),
     }),
     {
-      name: "current-canvas",
+      name: "curr-canvas",
     }
   )
 );

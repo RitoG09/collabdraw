@@ -66,14 +66,14 @@ export type ShapeType =
   | {
       id: string;
       type: "diamond";
-      dimension: DimentionType[];
+      dimention: DimentionType[];
       diamondPoints: [number, number][];
       seed?: number;
     }
   | {
       id: string;
       type: "arrow";
-      dimension: DimentionType[];
+      dimention: DimentionType[];
       shaft: {
         x1: number;
         y1: number;
@@ -88,7 +88,7 @@ export type ShapeType =
   | {
       id: string;
       type: "line";
-      dimension: DimentionType[];
+      dimention: DimentionType[];
       x1: number;
       y1: number;
       x2: number;

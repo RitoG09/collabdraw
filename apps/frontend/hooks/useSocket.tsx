@@ -17,8 +17,9 @@ let connectionQueue: (() => void)[] = [];
 let isConnecting: boolean = false;
 
 const connect = (
-  roomId: string | null | undefined,
-  setSocketStatus: (status: ESocketStatus) => void
+  roomId: string | null,
+  setSocketStatus: (status: ESocketStatus) => void,
+  onConnectionEstablished?: () => void
 ) => {
   const token = localStorage.getItem("token");
 
@@ -43,6 +44,7 @@ const connect = (
     console.log("connection established.");
     isConnecting = false;
     setSocketStatus(ESocketStatus.connected);
+    onConnectionEstablished?.();
     connectionQueue.forEach((action) => action());
     connectionQueue = [];
   };
@@ -74,7 +76,7 @@ export default function useSocket() {
   const { shapes, setShapes } = useShapeStore();
 
   useEffect(() => {
-    const ws = connect(roomId, setSocketStatus);
+    const ws = connect(roomId!, setSocketStatus);
     if (ws) {
       ws.onmessage = (event) => {
         try {
@@ -95,8 +97,12 @@ export default function useSocket() {
             case "leaveRoom":
               toast.error(`${payload.username} has left the room`);
               break;
+            case "initialShapes":
+              setShapes(payload.shapes || []);
+              break;
             case "usersList":
               setParticipants(payload.participants);
+              break;
             case "create":
               setShapes((prev) => [...prev, payload.shape]);
               break;
@@ -104,8 +110,10 @@ export default function useSocket() {
               setShapes((prev) =>
                 prev.map((s) => (s.id === payload.shape.id ? payload.shape : s))
               );
+              break;
             case "delete":
               setShapes((prev) => prev.filter((s) => s.id !== payload.shapeId));
+              break;
             default:
               console.warn("Unknown message type:", type);
           }
@@ -114,7 +122,7 @@ export default function useSocket() {
         }
       };
     }
-  }, [setParticipants, setShapes, setSocketStatus]);
+  }, [roomId, setSocketStatus, setParticipants, setShapes]);
 
   const sendMessage = (type: string, payload: any) => {
     const action = () => {
@@ -130,7 +138,7 @@ export default function useSocket() {
       console.log("Pushing join message in queue.");
       connectionQueue.push(action);
       if (!wsInstance && !isConnecting) {
-        connect(roomId, setSocketStatus);
+        connect(roomId!, setSocketStatus);
       }
     }
   };
@@ -143,7 +151,7 @@ export default function useSocket() {
         router.push(`/canvas/room/${roomId}`);
       }
     },
-    [pathname, router]
+    [pathname, router, sendMessage]
   );
 
   const leaveRoom = useCallback(

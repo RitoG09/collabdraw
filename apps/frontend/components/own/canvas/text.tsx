@@ -7,7 +7,7 @@ import { TextInput } from "@/types/types";
 import { Dispatch, SetStateAction } from "react";
 import { Input } from "@/components/ui/input";
 
-export function text({
+export function Text({
   textInput,
   setShapes,
   setTextInput,
@@ -26,7 +26,7 @@ export function text({
   return (
     textInput && (
       <Input
-        className="absolute text-[#0ff] bg-transparent border-[#0ff] border-dashed p-5 outline-none text-2xl font-[Indie_Flower]"
+        className="absolute text-[#ffe600] bg-transparent border-[#ffe600] border-dashed p-5 outline-none text-2xl font-[Indie_Flower]"
         style={{
           top: textInput.cords.y - panOffset.y - 25,
           left: textInput.cords.x - panOffset.x - 25,

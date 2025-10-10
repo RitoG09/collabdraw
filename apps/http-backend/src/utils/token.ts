@@ -9,7 +9,7 @@ export function generateToken(userId: string) {
       return { error: "secret not provided" };
     }
     const encoded = jwt.sign({ userId }, process.env.JWT_SECRET, {
-      expiresIn: "10d",
+      expiresIn: "365d",
     });
     return { encoded };
   } catch (error) {
