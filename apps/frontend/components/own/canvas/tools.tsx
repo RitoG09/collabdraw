@@ -40,7 +40,7 @@ export function Tool({
     >
       {children}
       {hovered && (
-        <div className="absolute right-8 -translate-x-5 px-2 py-0.5 rounded bg-white text-neutral-900 whitespace-nowrap z-10 shadow-lg text-sm">
+        <div className="absolute top-full mt-2 left-1 -translate-x-5 px-2 py-0.5 rounded bg-white text-neutral-900 whitespace-nowrap z-10 shadow-lg text-sm">
           {toolTip}
         </div>
       )}
@@ -48,15 +48,101 @@ export function Tool({
   );
 }
 
+// export function SelectTool() {
+//   const setActiveTool = useActiveStore((s) => s.setActive);
+//   const selectedTool = (tool: ToolType) => {
+//     setActiveTool(tool);
+//   };
+//   return (
+//     <div className="bg-neutral-800/60 backdrop-blur-md p-2 sm:px-3.5 sm:py-4 rounded-lg">
+//       <div className="flex flex-col gap-3">
+//         <div className="flex flex-col gap-2">
+//           <Tool
+//             name="rectangle"
+//             toolTip="Rectangle"
+//             onClick={() => selectedTool("rectangle")}
+//           >
+//             <Rectangle />
+//           </Tool>
+//           <Tool
+//             name="circle"
+//             toolTip="Circle"
+//             onClick={() => selectedTool("circle")}
+//           >
+//             <Circle />
+//           </Tool>
+//           <Tool
+//             name="diamond"
+//             toolTip="Diamond"
+//             onClick={() => selectedTool("diamond")}
+//           >
+//             <Diamond />
+//           </Tool>
+//           <Tool
+//             name="arrow"
+//             toolTip="Arrow"
+//             onClick={() => selectedTool("arrow")}
+//           >
+//             <Arrow />
+//           </Tool>
+//         </div>
+//         <div className="w-full h-px bg-neutral-700/50 my-1"></div>
+//         <div className="flex flex-col gap-2">
+//           <Tool onClick={() => selectedTool("line")} name="line" toolTip="Line">
+//             <Line />
+//           </Tool>
+//           <Tool
+//             onClick={() => selectedTool("pencil")}
+//             name="pencil"
+//             toolTip="Pencil"
+//           >
+//             <Pencil />
+//           </Tool>
+//           <Tool onClick={() => selectedTool("text")} name="text" toolTip="Text">
+//             <Text />
+//           </Tool>
+//         </div>
+
+//         <div className="w-full h-px bg-neutral-700/50 my-1"></div>
+
+//         <div className="flex flex-col gap-2">
+//           <Tool
+//             onClick={() => selectedTool("eraser")}
+//             name="eraser"
+//             toolTip="Eraser"
+//           >
+//             <Eraser />
+//           </Tool>
+
+//           <Tool
+//             onClick={() => selectedTool("pan")}
+//             name="pan"
+//             toolTip="Hand - Panning tool"
+//           >
+//             <Pan />
+//           </Tool>
+//           <Tool
+//             onClick={() => selectedTool("select")}
+//             name="select"
+//             toolTip="Select"
+//           >
+//             <Select />
+//           </Tool>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
+
 export function SelectTool() {
   const setActiveTool = useActiveStore((s) => s.setActive);
   const selectedTool = (tool: ToolType) => {
     setActiveTool(tool);
   };
   return (
-    <div className="bg-neutral-800/60 backdrop-blur-md p-2 sm:px-3.5 sm:py-4 rounded-lg">
-      <div className="flex flex-col gap-3">
-        <div className="flex flex-col gap-2">
+    <div className="fixed top-4 left-1/2 -translate-x-1/2 z-50 bg-neutral-800/60 backdrop-blur-md px-3 py-2 rounded-lg shadow-lg">
+      <div className="flex flex-row gap-3 items-center">
+        <div className="flex flex-row gap-2">
           <Tool
             name="rectangle"
             toolTip="Rectangle"
@@ -86,8 +172,8 @@ export function SelectTool() {
             <Arrow />
           </Tool>
         </div>
-        <div className="w-full h-px bg-neutral-700/50 my-1"></div>
-        <div className="flex flex-col gap-2">
+        <div className="h-6 w-px bg-neutral-700/50 mx-1"></div>
+        <div className="flex flex-row gap-2">
           <Tool onClick={() => selectedTool("line")} name="line" toolTip="Line">
             <Line />
           </Tool>
@@ -103,9 +189,9 @@ export function SelectTool() {
           </Tool>
         </div>
 
-        <div className="w-full h-px bg-neutral-700/50 my-1"></div>
+        <div className="h-6 w-px bg-neutral-700/50 mx-1"></div>
 
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-row gap-2">
           <Tool
             onClick={() => selectedTool("eraser")}
             name="eraser"

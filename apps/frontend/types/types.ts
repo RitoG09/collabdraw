@@ -1,6 +1,5 @@
 import { ShapeType } from "@repo/common/types";
 import { SetStateAction } from "react";
-import { StoreApi, UseBoundStore } from "zustand";
 import { DimentionType } from "@repo/common/types";
 
 export type User = {
@@ -72,3 +71,23 @@ export type CurrCanvasStore = {
     updater: ShapeType[][] | ((prev: ShapeType[][]) => ShapeType[][])
   ) => void;
 };
+
+export interface ChatMessage {
+  sender: string;
+  message: string;
+  timestamp: string;
+}
+
+export interface ChatStore {
+  chatMessages: ChatMessage[];
+  typingUser: string | null;
+  setChatMessages: (messages: ChatMessage[]) => void;
+  addChatMessage: (message: ChatMessage) => void;
+  setTypingUser: (user: string | null) => void;
+  clearChat: () => void;
+}
+
+export interface ChatUser {
+  id: string;
+  username: string;
+}

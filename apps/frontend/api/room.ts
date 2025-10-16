@@ -45,3 +45,21 @@ export const getExistingShapes = async (roomId: string) => {
     );
   }
 };
+
+export const getExistingChat = async (roomId: string) => {
+  try {
+    const response = await axios.get(`${HTTP_URL}/room/chats/${roomId}`);
+    const allMessages = response.data.chats;
+
+    allMessages.map((msg: any) => ({
+      sender: msg.senderId.toString(),
+      message: msg.message,
+      timestamp: msg.timestamp,
+    }));
+  } catch (error) {
+    const err = error as AxiosError<{ error: string }>;
+    throw new Error(
+      err.response?.data.error || `Failed to fetch chats ${error}`
+    );
+  }
+};

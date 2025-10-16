@@ -45,6 +45,8 @@ import { UndoRedo } from "./undoredo";
 import Logout from "../auth/logout";
 import { Text } from "./text";
 import Image from "next/image";
+import { ChatPanel } from "./chatpanel";
+import { useChatStore } from "@/store/useChatStore";
 
 const dancingScript = Dancing_Script({
   weight: "700",
@@ -105,6 +107,9 @@ export default function Canvas() {
   const [showCollabPanel, setShowCollabPanel] = useState(false);
   const { createShape, updateShape, deleteShape, socketStatus } = useSocket();
   const router = useRouter();
+  const [chatOpen, setChatOpen] = useState(false);
+
+  // const { chatOpen,sumOpen,toggleChat,toggleSum } = useChatStore();
 
   useLayoutEffect(() => {
     function resizeCanvas() {
@@ -468,9 +473,28 @@ export default function Canvas() {
           </tspan>
         </text>
       </div>
-      <div className="fixed top-6 right-6 z-20">
+      <div className="fixed top-8 right-6 z-20">
         <SelectTool />
       </div>
+      {/* Chat Sidebar */}
+      <div
+        className={`fixed right-0 top-0 bottom-0 w-80 shadow-lg border-l border-gray-200 transform transition-transform duration-300 ease-in-out z-10 ${
+          chatOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        {/* Chat Content */}
+        <div className="h-full">
+          <ChatPanel />
+        </div>
+      </div>
+
+      {/* Overlay for mobile */}
+      {/* {chatOpen && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 z-5 lg:hidden md:hidden"
+          onClick={() => toggleChat()}
+        />
+      )} */}
       <div>
         {mode === "solo" ? <UndoRedo /> : <Logout />}
         {mode === "collaboration" && (
