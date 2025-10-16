@@ -10,6 +10,8 @@ import {
   createShape,
   updateShape,
   deleteShape,
+  chat,
+  typing,
 } from "./users.js";
 import { MessageType } from "./types.js";
 
@@ -106,6 +108,16 @@ wss.on("connection", async function connection(ws, request) {
             parsedData.payload.shapeId,
             parsedData.payload.roomId
           );
+          break;
+
+        case MessageType.chat:
+          console.log("chatting has started.");
+          chat(userId, parsedData.payload.roomId, parsedData.payload.chats);
+          break;
+
+        case MessageType.typing:
+          console.log("Someone is typing.");
+          typing(userId, parsedData.payload.roomId);
           break;
 
         default:

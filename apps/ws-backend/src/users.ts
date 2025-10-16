@@ -223,3 +223,37 @@ export const deleteShape = async (
 
   processShapeQueue();
 };
+
+export const chat = async (userId: string, roomId: string, chats: string) => {
+  const timestamp = new Date().toISOString();
+  if (!roomId || !chats) return;
+
+  await prismaClient.chat.create({
+    data: {
+      roomId: roomId,
+      senderId: userId,
+      message: chats,
+      createdAt: new Date(),
+    },
+  });
+
+  if (!(await roomExists(roomId))) return;
+
+  broadcastToRoom(roomId, {
+    type: "chat",
+    chat: chats,
+    roomId,
+    sender: userId,
+    timestamp,
+  });
+};
+
+export const typing = async (userId: string, roomId: string) => {
+  const sender = userId;
+  if (!(await roomExists(roomId))) return;
+  broadcastToRoom(roomId, {
+    type: "typing",
+    sender,
+    roomId,
+  });
+};

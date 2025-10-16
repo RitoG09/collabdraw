@@ -72,4 +72,35 @@ const roomShapes = async (req: customRequest, res: Response) => {
   }
 };
 
-export { createRoom, roomShapes };
+const getChats = async (req: customRequest, res: Response) => {
+  try {
+    const roomId = req.params.roomId;
+    if (!roomId) {
+      emitError({ res, error: `No room`, statusCode: 400 });
+      return;
+    }
+    const limit = parseInt(req.query.limit as string) || 50;
+    const cursor = req.query.cursor
+      ? parseInt(req.query.cursor as string)
+      : undefined;
+
+    const chats = await prismaClient.chat.findMany({
+      where: {
+        roomId,
+        ...(cursor && { id: { lt: cursor } }),
+      },
+      orderBy: {
+        id: "desc",
+      },
+      take: limit,
+    });
+    res.json({
+      chats: chats.reverse(),
+      nextCursor: chats.length ? chats[chats.length - 1]!.id : null,
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Failed to fetch messages." });
+  }
+};
+
+export { createRoom, roomShapes, getChats };

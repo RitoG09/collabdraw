@@ -13,4 +13,6 @@ export enum MessageType {
   create = "create",
   update = "update",
   delete = "delete",
+  chat = "chat",
+  typing = "typing",
 }
