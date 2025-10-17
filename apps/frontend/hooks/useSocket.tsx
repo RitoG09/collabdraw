@@ -203,6 +203,7 @@ export default function useSocket() {
       if (!message.trim()) return;
       sendMessage("chat", {
         roomId,
+        userId,
         chats: message,
       });
     },
@@ -210,7 +211,7 @@ export default function useSocket() {
   );
 
   const sendTyping = useCallback((roomId: string, userId: string) => {
-    sendMessage("typing", { roomId });
+    sendMessage("typing", { roomId, userId });
   }, []);
 
   return {

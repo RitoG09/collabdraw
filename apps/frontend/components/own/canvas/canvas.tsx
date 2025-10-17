@@ -476,6 +476,25 @@ export default function Canvas() {
       <div className="fixed top-8 right-6 z-20">
         <SelectTool />
       </div>
+
+      <div>
+        {mode === "solo" ? <UndoRedo /> : <Logout />}
+        {mode === "collaboration" && (
+          <div>
+            <button
+              onClick={toggleCollaborationPanel}
+              className="fixed bottom-6 right-6 sm:bottom-6 sm:right-6 bg-neutral-700/60 hover:bg-neutral-800 hover:cursor-pointer text-white tracking-wider p-3 rounded-lg shadow-lg transition-colors flex items-center gap-2"
+            >
+              <Users className="w-5 h-5" />
+              <span className="hidden md:inline">View Participants</span>
+            </button>
+            <CollabPanel
+              isVisible={showCollabPanel}
+              onclose={closeCollaborationPanel}
+            />
+          </div>
+        )}
+      </div>
       {/* Chat Sidebar */}
       <div
         className={`fixed right-0 top-0 bottom-0 w-80 shadow-lg border-l border-gray-200 transform transition-transform duration-300 ease-in-out z-10 ${
@@ -495,24 +514,6 @@ export default function Canvas() {
           onClick={() => toggleChat()}
         />
       )} */}
-      <div>
-        {mode === "solo" ? <UndoRedo /> : <Logout />}
-        {mode === "collaboration" && (
-          <div>
-            <button
-              onClick={toggleCollaborationPanel}
-              className="fixed bottom-6 right-6 sm:bottom-6 sm:right-6 bg-neutral-700/60 hover:bg-neutral-800 hover:cursor-pointer text-white tracking-wider p-3 rounded-lg shadow-lg transition-colors flex items-center gap-2"
-            >
-              <Users className="w-5 h-5" />
-              <span className="hidden md:inline">View Participants</span>
-            </button>
-            <CollabPanel
-              isVisible={showCollabPanel}
-              onclose={closeCollaborationPanel}
-            />
-          </div>
-        )}
-      </div>
     </div>
   );
 }

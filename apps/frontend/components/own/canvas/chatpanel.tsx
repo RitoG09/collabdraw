@@ -17,22 +17,21 @@ export function ChatPanel() {
   const { chatMessages } = useChatStore();
   const setChatMessages = useChatStore((s) => s.setChatMessages);
   const { sendChat, sendTyping } = useSocket();
-  const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [typingUsers, setTypingUsers] = useState<string[]>([]);
   const [input, setInput] = useState("");
   const [currentUser, setCurrentUser] = useState<ChatUser | null>(null);
   const [onlineUsers, setOnlineUsers] = useState<string[]>([]);
   const chatEndRef = useRef<HTMLDivElement>(null);
-  const [socket, setSocket] = useState<WebSocket | null>(null);
 
   useEffect(() => {
     const restoredChats = async () => {
       if (mode === "collaboration" && roomId) {
         try {
           const initialChats = await getExistingChat(roomId);
-          //@ts-ignore
+          console.log("Restored chats:", initialChats);
           setChatMessages(initialChats);
         } catch (error) {
+          console.error(error);
           toast.error("Failed to load existed chats.");
         }
       }
@@ -45,28 +44,20 @@ export function ChatPanel() {
   }, [chatMessages]);
 
   const handleSend = () => {
-    if (!input.trim() || !socket) return;
-    const messageData = {
-      type: "chat",
-      chat: input,
-      roomId,
-      timestamp: new Date().toISOString(),
-    };
-    socket.send(JSON.stringify(messageData));
+    if (!input.trim() || !roomId) return;
+    sendChat(roomId, currentUser?.id || "Anonymous", input);
     setInput("");
   };
 
   const handleTyping = () => {
-    if (socket && currentUser) {
-      socket.send(
-        JSON.stringify({ type: "typing", sender: currentUser, roomId })
-      );
+    if (roomId && currentUser) {
+      sendTyping(roomId, currentUser.id);
     }
   };
 
   return (
     <div className="flex flex-col h-full bg-white/10 rounded-2xl p-4 shadow">
-      // online Users
+      {/* online Users */}
       <div className="flex-shrink-0 p-3 border-b border-zinc-800 bg-zinc-900">
         <div className="flex flex-wrap items-center gap-2 text-sm">
           <span className="font-semibold text-gray-400">Online:</span>
@@ -88,7 +79,7 @@ export function ChatPanel() {
       {/* Messages */}
       <div className="flex-1 overflow-y-auto p-3 space-y-3 min-h-0">
         <div className="space-y-3 custom-scrollbar">
-          {messages.map((msg, index) => {
+          {chatMessages.map((msg, index) => {
             const isSelf = msg.sender.toString() === currentUser?.id;
 
             return (
@@ -120,14 +111,14 @@ export function ChatPanel() {
           <div ref={chatEndRef} />
         </div>
       </div>
-      // typing users
+      {/* typing users*/}
       {typingUsers.length > 0 && (
         <div className="flex-shrink-0 px-3 py-1 text-sm italic text-gray-400 bg-zinc-900 border-t border-zinc-800">
           {typingUsers.join(", ")} {typingUsers.length > 1 ? "are" : "is"}{" "}
           typing...
         </div>
       )}
-      // input section
+      {/* input section*/}
       <div className="flex-shrink-0 p-3 border-t border-zinc-800 bg-zinc-900">
         <div className="flex gap-2">
           <input

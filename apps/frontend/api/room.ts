@@ -48,13 +48,21 @@ export const getExistingShapes = async (roomId: string) => {
 
 export const getExistingChat = async (roomId: string) => {
   try {
-    const response = await axios.get(`${HTTP_URL}/room/chats/${roomId}`);
+    const token = localStorage.getItem("token");
+    if (!token) {
+      console.log("no token");
+      return;
+    }
+    const response = await axios.get(`${HTTP_URL}/room/chats/${roomId}`, {
+      headers: { authorization: token },
+    });
+    console.log("API response:", response.data);
     const allMessages = response.data.chats;
 
-    allMessages.map((msg: any) => ({
+    return allMessages.map((msg: any) => ({
       sender: msg.senderId.toString(),
       message: msg.message,
-      timestamp: msg.timestamp,
+      timestamp: msg.createdAt || msg.timestamp || new Date().toISOString(),
     }));
   } catch (error) {
     const err = error as AxiosError<{ error: string }>;
