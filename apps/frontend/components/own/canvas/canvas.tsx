@@ -39,7 +39,7 @@ import { getExistingShapes } from "@/api/room";
 import useUndoRedo from "@/hooks/useUndoRedo";
 import { useIndexStore } from "@/store/useIndexStore";
 import { useCurrCanvasStore } from "@/store/useCurrCanvasStore";
-import { Users } from "lucide-react";
+import { MessageCircle, Users, X } from "lucide-react";
 import { CollabPanel } from "./collabpanel";
 import { UndoRedo } from "./undoredo";
 import Logout from "../auth/logout";
@@ -47,6 +47,8 @@ import { Text } from "./text";
 import Image from "next/image";
 import { ChatPanel } from "./chatpanel";
 import { useChatStore } from "@/store/useChatStore";
+import { tr } from "zod/v4/locales";
+import { Button } from "@/components/ui/button";
 
 const dancingScript = Dancing_Script({
   weight: "700",
@@ -108,6 +110,9 @@ export default function Canvas() {
   const { createShape, updateShape, deleteShape, socketStatus } = useSocket();
   const router = useRouter();
   const [chatOpen, setChatOpen] = useState(false);
+  const [hasUnreadMessages, setHasUnreadMessages] = useState(false);
+  const chatMessages = useChatStore((s) => s.chatMessages);
+  const lastReadCountRef = useRef(0);
 
   // const { chatOpen,sumOpen,toggleChat,toggleSum } = useChatStore();
 
@@ -159,6 +164,12 @@ export default function Canvas() {
     };
     restoredShapes();
   }, [roomId, mode, setShapes]);
+
+  useEffect(() => {
+    if (!chatOpen && chatMessages.length > lastReadCountRef.current) {
+      setHasUnreadMessages(true);
+    }
+  }, [chatMessages, chatOpen]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -440,6 +451,14 @@ export default function Canvas() {
     setShowCollabPanel(false);
   };
 
+  const toggleChat = () => {
+    setChatOpen(!chatOpen);
+    if (!chatOpen) {
+      setHasUnreadMessages(false);
+      lastReadCountRef.current = chatMessages.length;
+    }
+  };
+
   return (
     <div className="relative overflow-y-hidden w-full h-screen">
       <canvas
@@ -483,7 +502,7 @@ export default function Canvas() {
           <div>
             <button
               onClick={toggleCollaborationPanel}
-              className="fixed bottom-6 right-6 sm:bottom-6 sm:right-6 bg-neutral-700/60 hover:bg-neutral-800 hover:cursor-pointer text-white tracking-wider p-3 rounded-lg shadow-lg transition-colors flex items-center gap-2"
+              className="fixed bottom-6 right-6 sm:bottom-6 sm:right-6 bg-neutral-700/60 hover:bg-neutral-800 hover:cursor-pointer text-white tracking-wider p-4 rounded-lg shadow-lg transition-colors flex items-center justify-between gap-2 z-20"
             >
               <Users className="w-5 h-5" />
               <span className="hidden md:inline">View Participants</span>
@@ -495,25 +514,45 @@ export default function Canvas() {
           </div>
         )}
       </div>
+      {/* Chat Button - Only show in collaboration mode */}
+      {mode === "collaboration" && (
+        <Button
+          onClick={toggleChat}
+          className="fixed top-4 right-6 sm:bottom-6 sm:right-48 bg-neutral-700/60 hover:bg-neutral-800 hover:cursor-pointer text-white tracking-wider p-4 rounded-lg shadow-lg transition-colors flex items-center gap-2 z-20"
+        >
+          <MessageCircle className="w-5 h-5" />
+          <span className="hidden md:inline">Chat</span>
+          {hasUnreadMessages && (
+            <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full animate-pulse border-2 border-neutral-900"></span>
+          )}
+        </Button>
+      )}
       {/* Chat Sidebar */}
       <div
-        className={`fixed right-0 top-0 bottom-0 w-80 shadow-lg border-l border-gray-200 transform transition-transform duration-300 ease-in-out z-10 ${
+        className={`fixed right-0 top-0 bottom-0 w-80 sm:w-96 shadow-2xl border-l border-zinc-700 transform transition-transform duration-300 ease-in-out z-30 ${
           chatOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
+        {/* Close button */}
+        <Button
+          onClick={toggleChat}
+          title="Close chat"
+          className="absolute top-4 left-4 z-40 bg-zinc-800 hover:bg-zinc-700 text-white p-2 rounded-lg transition-colors"
+        >
+          <X className="h-5 w-5" />
+        </Button>
         {/* Chat Content */}
-        <div className="h-full">
+        <div className="h-full pt-14">
           <ChatPanel />
         </div>
       </div>
-
-      {/* Overlay for mobile */}
-      {/* {chatOpen && (
+      {/* Overlay for mobile/tablet */}
+      {chatOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-5 lg:hidden md:hidden"
-          onClick={() => toggleChat()}
+          onClick={toggleChat}
+          className="fixed inset-0 bg-black bg-opacity-50 z-20 lg:hidden"
         />
-      )} */}
+      )}
     </div>
   );
 }
