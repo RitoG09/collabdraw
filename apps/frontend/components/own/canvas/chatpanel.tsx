@@ -11,16 +11,17 @@ import axios from "axios";
 import { HTTP_URL } from "@/config";
 import toast from "react-hot-toast";
 import { getExistingChat } from "@/api/room";
+import { useParticipantsStore } from "@/store/useParticipantsStore";
 
 export function ChatPanel() {
   const { roomId, mode } = useSession();
-  const { chatMessages } = useChatStore();
+  const { chatMessages, typingUser } = useChatStore();
   const setChatMessages = useChatStore((s) => s.setChatMessages);
   const { sendChat, sendTyping } = useSocket();
   const [typingUsers, setTypingUsers] = useState<string[]>([]);
   const [input, setInput] = useState("");
   const [currentUser, setCurrentUser] = useState<ChatUser | null>(null);
-  const [onlineUsers, setOnlineUsers] = useState<string[]>([]);
+  const { participants } = useParticipantsStore();
   const chatEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -60,22 +61,26 @@ export function ChatPanel() {
       {/* online Users */}
       <div className="flex-shrink-0 p-3 border-b border-zinc-800 bg-zinc-900">
         <div className="flex flex-wrap items-center gap-2 text-sm">
-          <span className="font-semibold text-gray-400">Online:</span>
-          {[...new Set(onlineUsers)].map((userId, idx) => (
+          <div className="flex items-center gap-1">
+            <span className="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse"></span>
+            <span className="font-semibold text-gray-400">Online:</span>
+          </div>
+          {participants.map((user, idx) => (
             <span
               key={idx}
               className={`px-2 py-1 rounded-full text-xs font-medium shadow-sm transition-colors
-                ${
-                  userId === currentUser?.id
-                    ? "bg-white text-black"
-                    : "bg-[#262626] text-gray-200"
-                }`}
+          ${
+            user.id === currentUser?.id
+              ? "bg-white text-black"
+              : "bg-[#262626] text-gray-200"
+          }`}
             >
-              {userId === currentUser?.id ? "You" : userId}
+              {user.id === currentUser?.id ? "You" : user.id}
             </span>
           ))}
         </div>
       </div>
+
       {/* Messages */}
       <div className="flex-1 overflow-y-auto p-3 space-y-3 min-h-0">
         <div className="space-y-3 custom-scrollbar">
@@ -112,10 +117,15 @@ export function ChatPanel() {
         </div>
       </div>
       {/* typing users*/}
-      {typingUsers.length > 0 && (
+      {/* {typingUsers.length > 0 && (
         <div className="flex-shrink-0 px-3 py-1 text-sm italic text-gray-400 bg-zinc-900 border-t border-zinc-800">
           {typingUsers.join(", ")} {typingUsers.length > 1 ? "are" : "is"}{" "}
           typing...
+        </div>
+      )} */}
+      {typingUser && (
+        <div className="flex-shrink-0 px-3 py-1 text-sm italic text-red-400 bg-zinc-900 border-t border-zinc-800">
+          {typingUser} is typing...
         </div>
       )}
       {/* input section*/}
@@ -132,12 +142,12 @@ export function ChatPanel() {
               else handleTyping();
             }}
             placeholder="Type your message..."
-            className="flex-1 p-2 text-sm bg-zinc-800 rounded border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="flex-1 p-2 text-sm bg-zinc-800 rounded border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
           />
           <Button
             onClick={handleSend}
             disabled={!input.trim()}
-            className="bg-[#828282] px-3 py-2 rounded hover:bg-zinc-300 transition-colors text-zinc-700 text-sm font-medium"
+            className="bg-yellow-400 px-3 py-2 rounded-lg hover:bg-yellow-500 transition-colors text-black text-sm font-medium"
           >
             Send
           </Button>

@@ -44,7 +44,7 @@ export function CollabPanel({ isVisible, onclose }: CollabPanelProps) {
   if (!isVisible) return null;
 
   return (
-    <div className="z-10 absolute right-20 bottom-20 sm:right-24 bg-neutral-900/90 bg-opacity-80 backdrop-blur-md p-4 rounded-lg shadow-2xl border border-neutral-800 text-white w-52 sm:w-64 animate-in fade-in duration-200">
+    <div className="z-10 absolute left-7 bottom-23 sm:right-24 bg-neutral-900/90 bg-opacity-80 backdrop-blur-md p-4 rounded-lg shadow-2xl border border-neutral-800 text-white w-52 sm:w-64 animate-in fade-in duration-200">
       <Button
         onClick={onclose}
         className="absolute top-4 right-4 text-neutral-400 transition-colors"
@@ -101,7 +101,7 @@ export function CollabPanel({ isVisible, onclose }: CollabPanelProps) {
             toast.error("Invalid room link. Please check the format.");
           }
         }}
-        className="w-full bg-rose-400 hover:bg-rose-500 transition-colors text-white py-2 px-4 rounded-lg hover:cursor-pointer"
+        className="w-full bg-red-500 hover:bg-red-600 transition-colors text-white py-2 px-4 rounded-lg hover:cursor-pointer"
       >
         Leave Room
       </Button>

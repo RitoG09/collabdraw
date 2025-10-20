@@ -502,7 +502,7 @@ export default function Canvas() {
           <div>
             <button
               onClick={toggleCollaborationPanel}
-              className="fixed bottom-6 right-6 sm:bottom-6 sm:right-6 bg-neutral-700/60 hover:bg-neutral-800 hover:cursor-pointer text-white tracking-wider p-4 rounded-lg shadow-lg transition-colors flex items-center justify-between gap-2 z-20"
+              className="fixed bottom-6 left-6 sm:bottom-6 sm:left-6 bg-neutral-700/60 hover:bg-neutral-800 hover:cursor-pointer text-white tracking-wider p-4 rounded-lg shadow-lg transition-colors flex items-center gap-2 z-20"
             >
               <Users className="w-5 h-5" />
               <span className="hidden md:inline">View Participants</span>
@@ -518,7 +518,7 @@ export default function Canvas() {
       {mode === "collaboration" && (
         <Button
           onClick={toggleChat}
-          className="fixed top-4 right-6 sm:bottom-6 sm:right-48 bg-neutral-700/60 hover:bg-neutral-800 hover:cursor-pointer text-white tracking-wider p-4 rounded-lg shadow-lg transition-colors flex items-center gap-2 z-20"
+          className="fixed top-3 right-7 sm:bottom-6 sm:right-12 bg-neutral-700/60 hover:bg-neutral-800 hover:cursor-pointer text-white tracking-wider p-5 rounded-lg shadow-lg transition-colors flex items-center gap-2 z-20"
         >
           <MessageCircle className="w-5 h-5" />
           <span className="hidden md:inline">Chat</span>
@@ -537,9 +537,9 @@ export default function Canvas() {
         <Button
           onClick={toggleChat}
           title="Close chat"
-          className="absolute top-4 left-4 z-40 bg-zinc-800 hover:bg-zinc-700 text-white p-2 rounded-lg transition-colors"
+          className="absolute top-4 left-4 z-40 bg-red-800 hover:bg-red-700 text-white p-1 rounded-full transition-colors"
         >
-          <X className="h-5 w-5" />
+          <X className="h-2 w-2" />
         </Button>
         {/* Chat Content */}
         <div className="h-full pt-14">
