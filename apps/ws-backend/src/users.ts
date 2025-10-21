@@ -241,10 +241,7 @@ export const chat = async (userId: string, roomId: string, chats: string) => {
 
   broadcastToRoom(roomId, {
     type: "chat",
-    chat: chats,
-    roomId,
-    sender: userId,
-    timestamp,
+    payload: { chat: chats, roomId, sender: userId, timestamp },
   });
 };
 
@@ -253,7 +250,6 @@ export const typing = async (userId: string, roomId: string) => {
   if (!(await roomExists(roomId))) return;
   broadcastToRoom(roomId, {
     type: "typing",
-    sender,
-    roomId,
+    payload: { sender, roomId },
   });
 };

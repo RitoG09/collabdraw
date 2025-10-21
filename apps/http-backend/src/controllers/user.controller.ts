@@ -102,7 +102,9 @@ export const profile = async (req: customRequest, res: Response) => {
 
   emitSuccess({
     res,
-    result: { user: { username: user.username, email: user.email } },
+    result: {
+      user: { username: user.username, email: user.email, id: user.id },
+    },
     message: "User data has been sent successfully",
   });
   return;

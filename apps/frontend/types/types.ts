@@ -76,6 +76,7 @@ export interface ChatMessage {
   sender: string;
   message: string;
   timestamp: string;
+  username?: string;
 }
 
 export interface ChatStore {

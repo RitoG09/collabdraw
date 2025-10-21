@@ -12,6 +12,7 @@ import { HTTP_URL } from "@/config";
 import toast from "react-hot-toast";
 import { getExistingChat } from "@/api/room";
 import { useParticipantsStore } from "@/store/useParticipantsStore";
+import { verifyUser } from "@/api/auth";
 
 export function ChatPanel() {
   const { roomId, mode } = useSession();
@@ -23,6 +24,23 @@ export function ChatPanel() {
   const [currentUser, setCurrentUser] = useState<ChatUser | null>(null);
   const { participants } = useParticipantsStore();
   const chatEndRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          toast.error("No token found. Please login again.");
+          return;
+        }
+        const data = await verifyUser(token);
+        setCurrentUser(data.user);
+      } catch (error: any) {
+        toast.error(error.message || "Failed to verify user");
+      }
+    };
+    fetchUser();
+  }, []);
 
   useEffect(() => {
     const restoredChats = async () => {
@@ -75,7 +93,7 @@ export function ChatPanel() {
               : "bg-[#262626] text-gray-200"
           }`}
             >
-              {user.id === currentUser?.id ? "You" : user.id}
+              {user.id === currentUser?.id ? "You" : user.username}
             </span>
           ))}
         </div>
@@ -85,7 +103,7 @@ export function ChatPanel() {
       <div className="flex-1 overflow-y-auto p-3 space-y-3 min-h-0">
         <div className="space-y-3 custom-scrollbar">
           {chatMessages.map((msg, index) => {
-            const isSelf = msg.sender.toString() === currentUser?.id;
+            const isSelf = msg.sender === currentUser?.id;
 
             return (
               <div

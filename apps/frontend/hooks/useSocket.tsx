@@ -203,8 +203,9 @@ export default function useSocket() {
       if (!message.trim()) return;
       sendMessage("chat", {
         roomId,
-        userId,
+        sender: userId,
         chats: message,
+        timestamp: new Date().toISOString(),
       });
     },
     []
