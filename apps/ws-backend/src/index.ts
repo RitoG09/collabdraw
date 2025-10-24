@@ -14,8 +14,22 @@ import {
   typing,
 } from "./users.js";
 import { MessageType } from "./types.js";
+import { connectKafkaProducer, consumeMessages } from "@repo/kafka/config";
 
 const wss = new WebSocketServer({ port: 8000 });
+
+(async () => {
+  try {
+    await connectKafkaProducer();
+    console.log("Kafka producer connected..");
+
+    const topic = "chats";
+    await consumeMessages(topic);
+    console.log(`Kafka consumer subscribed to topic: ${topic}`);
+  } catch (error) {
+    console.error("Kafka connection failed:", error);
+  }
+})();
 
 wss.on("connection", async function connection(ws, request) {
   const url = request.url;

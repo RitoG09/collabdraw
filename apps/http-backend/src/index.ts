@@ -2,7 +2,6 @@ import express, { Express } from "express";
 import userRouter from "./routes/user.route.js";
 import cors from "cors";
 import roomRouter from "./routes/room.route.js";
-import { connectKafkaProducer } from "@repo/kafka/config";
 
 const app: Express = express();
 
@@ -16,9 +15,14 @@ app.get("/", (req, res) => {
 app.use("/user", userRouter);
 app.use("/room", roomRouter);
 
-connectKafkaProducer().catch((err) => {
-  console.log("Something went wrong while connecting kafka.");
-});
+// connectKafkaProducer().catch((err) => {
+//   console.log("Something went wrong while connecting kafka.", err);
+// });
+
+// const topic = "chats";
+// consumeMessages(topic).catch((err) => {
+//   console.log("The Kafka Consume error", err);
+// });
 
 app.listen(3001, () => {
   console.log("Server is running");

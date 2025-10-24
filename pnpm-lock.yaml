@@ -200,6 +200,9 @@ importers:
       '@repo/db':
         specifier: workspace:*
         version: link:../../packages/db
+      '@repo/kafka':
+        specifier: workspace:*
+        version: link:../../packages/kafka
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
@@ -287,6 +290,9 @@ importers:
         specifier: ^2.2.4
         version: 2.2.4
     devDependencies:
+      '@repo/db':
+        specifier: workspace:*
+        version: link:../db
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config

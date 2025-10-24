@@ -2,6 +2,7 @@ import WebSocket from "ws";
 import { prismaClient } from "@repo/db/client";
 import { IUser } from "./types.js";
 import { ShapeType } from "@repo/common/types";
+import { produceMessage } from "@repo/kafka/config";
 
 interface IShapeOperation {
   type: "create" | "update" | "delete";
@@ -228,13 +229,19 @@ export const chat = async (userId: string, roomId: string, chats: string) => {
   const timestamp = new Date().toISOString();
   if (!roomId || !chats) return;
 
-  await prismaClient.chat.create({
-    data: {
-      roomId: roomId,
-      senderId: userId,
-      message: chats,
-      createdAt: new Date(),
-    },
+  // await prismaClient.chat.create({
+  //   data: {
+  //     roomId: roomId,
+  //     senderId: userId,
+  //     message: chats,
+  //     createdAt: new Date(),
+  //   },
+  // });
+  produceMessage("chats", {
+    roomId: roomId,
+    senderId: userId,
+    message: chats,
+    createdAt: new Date().toISOString(),
   });
 
   if (!(await roomExists(roomId))) return;
