@@ -21,6 +21,7 @@
     "kafkajs": "^2.2.4"
   },
   "devDependencies": {
+    "@repo/kafka": "workspace:*",
     "@repo/common": "workspace:*",
     "@repo/db": "workspace:*",
     "@repo/typescript-config": "workspace:*",
