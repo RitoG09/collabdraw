@@ -4,7 +4,7 @@ import { prismaClient } from "@repo/db/client";
 const kafka = new Kafka({
   logLevel: logLevel.ERROR,
   clientId: "collabdraw-app",
-  brokers: ["pkc-921jm.us-east-2.aws.confluent.cloud:443"],
+  brokers: ["pkc-921jm.us-east-2.aws.confluent.cloud:9092"],
   ssl: true, // required for Confluent Cloud
   sasl: {
     mechanism: "plain", //  always "plain" for Confluent Cloud
