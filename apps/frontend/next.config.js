@@ -37,6 +37,11 @@ const nextConfig = {
 
   webpack: (config) => {
     config.resolve.alias["@"] = path.resolve(__dirname, ".");
+    // Support baseUrl-style imports by adding root to modules resolution
+    config.resolve.modules = [
+      ...(config.resolve.modules || []),
+      path.resolve(__dirname, "."),
+    ];
     return config;
   },
 };
