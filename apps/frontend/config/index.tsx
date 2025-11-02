@@ -10,5 +10,5 @@ export const WS_URL = isProd
   : "ws://localhost:8000";
 
 export const APP_URL = isProd
-  ? process.env.NEXT_PUBLIC_APP_URL || "https://your-frontend.vercel.app"
+  ? process.env.NEXT_PUBLIC_APP_URL || "https://collabdraw.vercel.app"
   : "http://localhost:3000";
