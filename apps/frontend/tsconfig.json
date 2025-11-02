@@ -6,8 +6,11 @@
         "name": "next"
       }
     ],
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "@repo/common/*": ["../../packages/common/*"],
+      "@repo/typescript-config/*": ["../../packages/typescript-config/*"]
     }
   },
   "include": [
