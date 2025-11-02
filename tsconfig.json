@@ -1,0 +1,12 @@
+// {
+//   "extends": "@repo/typescript-config/base.json",
+//   "compilerOptions": {
+//     "baseUrl": ".",
+//     "paths": {
+//       "@repo/common/*": ["packages/common/src/*"],
+//       "@repo/db/*": ["packages/db/src/*"],
+//       "@repo/typescript-config/*": ["packages/typescript-config/*"]
+//     }
+//   },
+//   "include": ["packages", "apps"]
+// }

@@ -4,7 +4,15 @@ import { prismaClient } from "@repo/db/client";
 const kafka = new Kafka({
   logLevel: logLevel.ERROR,
   clientId: "collabdraw-app",
-  brokers: ["192.168.29.134:9092"],
+  brokers: ["pkc-921jm.us-east-2.aws.confluent.cloud:433"],
+  ssl: true, // required for Confluent Cloud
+  sasl: {
+    mechanism: "plain", //  always "plain" for Confluent Cloud
+    username: "P3MWDV332QLR3ZZ2", // your Confluent API key
+    password:
+      "cfltzGm8QfS93XTjzqAbiMsm9wJyv1/Vrl4+EGaMQSSa2v3kW1xvadh9EV8RE+OA", // your Confluent API secret
+  },
+  connectionTimeout: 10000,
 });
 
 const producer = kafka.producer();

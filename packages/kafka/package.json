@@ -12,15 +12,16 @@
     "dev": "tsc -w"
   },
   "devDependencies": {
+    "@repo/db": "workspace:*",
     "@repo/typescript-config": "workspace:*",
-    "typescript": "^5.9.3",
-    "@repo/db": "workspace:*"
+    "typescript": "^5.9.3"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "dotenv": "^17.2.2",
     "kafkajs": "^2.2.4"
   }
 }

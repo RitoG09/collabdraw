@@ -28,4 +28,6 @@ app.listen(3001, () => {
   console.log("Server is running");
 });
 
+app.get("/health", (_req, res) => res.json({ ok: true }));
+
 export default app;
