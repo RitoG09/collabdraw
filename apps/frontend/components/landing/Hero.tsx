@@ -1,14 +1,12 @@
 import React from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-// import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { TextEffect } from "components/ui/text-effect";
-// import { AnimatedGroup } from "components/ui/animated-group";
 import { Dancing_Script } from "next/font/google";
 import { Header } from "./Header";
 import { Button } from "components/ui/button";
-import { AnimatedGroup } from "components/ui/animated-group";
+import { AnimatedGroup } from "../ui/animated-group";
 
 const dancingScript = Dancing_Script({
   weight: "700",
