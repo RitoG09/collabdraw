@@ -1,4 +1,4 @@
-import Canvas from "@/components/own/canvas/canvas";
+import Canvas from "components/own/canvas/canvas";
 import React from "react";
 
 function page() {
