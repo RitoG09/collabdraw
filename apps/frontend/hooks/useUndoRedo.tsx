@@ -1,6 +1,6 @@
 import { ShapeType } from "@repo/common/types";
-import { useIndexStore } from "@/store/useIndexStore";
-import { useCurrCanvasStore } from "@/store/useCurrCanvasStore";
+import { useIndexStore } from "store/useIndexStore";
+import { useCurrCanvasStore } from "store/useCurrCanvasStore";
 
 export default function useUndoRedo() {
   const currCanvas = useCurrCanvasStore((s) => s.currCanvas);
@@ -29,7 +29,7 @@ export default function useUndoRedo() {
 
   const resetCanvas = () => {
     setCurrCanvas([[]]);
-    setIndex(0); 
+    setIndex(0);
   };
 
   return { addAction, undo, redo, resetCanvas };

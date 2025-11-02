@@ -1,4 +1,4 @@
-import { ToolType } from "@/types/types";
+import { ToolType } from "types/types";
 import { DimentionType, ShapeType } from "@repo/common/types";
 import { Dispatch, SetStateAction } from "react";
 import { getBoundingBox } from "../boundingBox";

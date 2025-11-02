@@ -1,6 +1,6 @@
 import { persist } from "zustand/middleware";
 import { create } from "zustand";
-import { IndexStore } from "@/types/types";
+import { IndexStore } from "types/types";
 
 export const useIndexStore = create<IndexStore>()(
   persist(

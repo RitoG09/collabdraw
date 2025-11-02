@@ -1,4 +1,4 @@
-import { verifyUser } from "@/api/auth";
+import { verifyUser } from "api/auth";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 

@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { ESocketStatus, SocketStatusStore } from "@/types/types";
+import { ESocketStatus, SocketStatusStore } from "types/types";
 
 export const useSocketStatusStore = create<SocketStatusStore>((set) => ({
   socketStatus: ESocketStatus.connecting,

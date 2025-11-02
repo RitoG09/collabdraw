@@ -1,4 +1,4 @@
-import { ChatStore } from "@/types/types";
+import { ChatStore } from "types/types";
 import { create } from "zustand";
 
 export const useChatStore = create<ChatStore>((set) => ({

@@ -1,4 +1,4 @@
-import { HTTP_URL } from "@/config";
+import { HTTP_URL } from "config";
 import axios, { AxiosError } from "axios";
 
 export const signup = async (userData: {

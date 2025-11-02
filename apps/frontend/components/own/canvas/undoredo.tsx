@@ -1,6 +1,6 @@
-import useUndoRedo from "@/hooks/useUndoRedo";
-import { Undo, Redo } from "@/icons/icon";
-import { Button } from "@/components/ui/button";
+import useUndoRedo from "hooks/useUndoRedo";
+import { Undo, Redo } from "icons/icon";
+import { Button } from "components/ui/button";
 
 export function UndoRedo() {
   const { undo, redo } = useUndoRedo();

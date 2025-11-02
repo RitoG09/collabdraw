@@ -1,27 +1,24 @@
 "use client";
 
 import { Dancing_Script } from "next/font/google";
-import {
-  getBoundingBox,
-  drawBoundingBoxAndHandlers,
-} from "@/utils/boundingBox";
-import { cursorStyle } from "@/utils/cursorStyle";
+import { getBoundingBox, drawBoundingBoxAndHandlers } from "utils/boundingBox";
+import { cursorStyle } from "utils/cursorStyle";
 import {
   handleMouseMovementOnMove,
   handleMouseMovementOnResize,
   makeShape,
-} from "@/utils/mouseListeners/mouseMove";
+} from "utils/mouseListeners/mouseMove";
 import {
   checkIsCursorInShape,
   checkIsCursorOnHandlers,
   getShapeIndexOnPrecisePoint,
-} from "@/utils/mouseListeners/mouseDown";
-import { freeDraw, getDrawable, getText } from "@/utils/getDrawable";
+} from "utils/mouseListeners/mouseDown";
+import { freeDraw, getDrawable, getText } from "utils/getDrawable";
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import { SelectTool } from "./tools";
-import { useActiveStore } from "@/store/useActiveStore";
-import useSocket from "@/hooks/useSocket";
-import useSession from "@/hooks/useSession";
+import { useActiveStore } from "store/useActiveStore";
+import useSocket from "hooks/useSocket";
+import useSession from "hooks/useSession";
 import { v4 as uuidv4 } from "uuid";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
@@ -33,12 +30,12 @@ import {
   ESocketStatus,
   Action,
   TextInput,
-} from "@/types/types";
-import { useShapeStore } from "@/store/useShapeStore";
-import { getExistingShapes } from "@/api/room";
-import useUndoRedo from "@/hooks/useUndoRedo";
-import { useIndexStore } from "@/store/useIndexStore";
-import { useCurrCanvasStore } from "@/store/useCurrCanvasStore";
+} from "types/types";
+import { useShapeStore } from "store/useShapeStore";
+import { getExistingShapes } from "api/room";
+import useUndoRedo from "hooks/useUndoRedo";
+import { useIndexStore } from "store/useIndexStore";
+import { useCurrCanvasStore } from "store/useCurrCanvasStore";
 import { MessageCircle, Users, X } from "lucide-react";
 import { CollabPanel } from "./collabpanel";
 import { UndoRedo } from "./undoredo";
@@ -46,9 +43,8 @@ import Logout from "../auth/logout";
 import { Text } from "./text";
 import Image from "next/image";
 import { ChatPanel } from "./chatpanel";
-import { useChatStore } from "@/store/useChatStore";
-import { tr } from "zod/v4/locales";
-import { Button } from "@/components/ui/button";
+import { useChatStore } from "store/useChatStore";
+import { Button } from "components/ui/button";
 
 const dancingScript = Dancing_Script({
   weight: "700",

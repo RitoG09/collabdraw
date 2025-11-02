@@ -1,7 +1,7 @@
 "use client";
 
-import { signin } from "@/api/auth";
-import { Button } from "@/components/ui/button";
+import { signin } from "api/auth";
+import { Button } from "components/ui/button";
 import {
   Card,
   CardContent,
@@ -9,9 +9,9 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { useUserStore } from "@/store/useUserStore";
+} from "components/ui/card";
+import { Input } from "components/ui/input";
+import { useUserStore } from "store/useUserStore";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Label } from "@radix-ui/react-label";
 import { signInSchema } from "@repo/common/types";

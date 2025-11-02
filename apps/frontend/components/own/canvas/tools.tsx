@@ -11,11 +11,11 @@ import {
   Rectangle,
   Select,
   Text,
-} from "@/icons/icon";
-import { ToolType } from "@/types/types";
-import { useActiveStore } from "@/store/useActiveStore";
+} from "icons/icon";
+import { ToolType } from "types/types";
+import { useActiveStore } from "store/useActiveStore";
 import { ReactNode, useState } from "react";
-import { Button } from "@/components/ui/button";
+import { Button } from "components/ui/button";
 
 export function Tool({
   children,

@@ -1,18 +1,15 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import useSession from "@/hooks/useSession";
-import useSocket from "@/hooks/useSocket";
-import { useChatStore } from "@/store/useChatStore";
-import { ChatMessage, ChatUser } from "@/types/types";
-import { timeStamp } from "console";
+import { Button } from "components/ui/button";
+import useSession from "hooks/useSession";
+import useSocket from "hooks/useSocket";
+import { useChatStore } from "store/useChatStore";
+import { ChatMessage, ChatUser } from "types/types";
 import { useEffect, useRef, useState } from "react";
-import axios from "axios";
-import { HTTP_URL } from "@/config";
 import toast from "react-hot-toast";
-import { getExistingChat } from "@/api/room";
-import { useParticipantsStore } from "@/store/useParticipantsStore";
-import { verifyUser } from "@/api/auth";
+import { getExistingChat } from "api/room";
+import { useParticipantsStore } from "store/useParticipantsStore";
+import { verifyUser } from "api/auth";
 
 export function ChatPanel() {
   const { roomId, mode } = useSession();

@@ -1,11 +1,11 @@
-import useSocket from "@/hooks/useSocket";
-import useUndoRedo from "@/hooks/useUndoRedo";
+import useSocket from "hooks/useSocket";
+import useUndoRedo from "hooks/useUndoRedo";
 import { DimentionType, ShapeType } from "@repo/common/types";
 import { v4 as uuidv4 } from "uuid";
-import useSession from "@/hooks/useSession";
-import { TextInput } from "@/types/types";
+import useSession from "hooks/useSession";
+import { TextInput } from "types/types";
 import { Dispatch, SetStateAction } from "react";
-import { Input } from "@/components/ui/input";
+import { Input } from "components/ui/input";
 
 export function Text({
   textInput,

@@ -21,8 +21,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import toast from "react-hot-toast";
-import { signup } from "@/api/auth";
-import { useUserStore } from "@/store/useUserStore";
+import { signup } from "api/auth";
+import { useUserStore } from "store/useUserStore";
 
 type signupForm = z.infer<typeof signUpSchema>;
 

@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { ShapeType } from "@repo/common/types";
-import { ShapeStore } from "@/types/types";
+import { ShapeStore } from "types/types";
 import { SetStateAction } from "react";
 
 export const useShapeStore = create<ShapeStore>()((set) => ({

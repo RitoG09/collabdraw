@@ -2,9 +2,8 @@
 
 import React, { useEffect, useId, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { useOutsideClick } from "../hooks/use-outside-click";
+import { useOutsideClick } from "hooks/use-outside-click";
 import JoinRoom from "./own/draw-space/join-room";
-import toast from "react-hot-toast";
 import CreateRoom from "./own/draw-space/create-room";
 
 export default function ExpandableCardDemoGrid() {

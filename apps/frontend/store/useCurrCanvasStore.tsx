@@ -1,6 +1,6 @@
 import { persist } from "zustand/middleware";
 import { create } from "zustand";
-import { CurrCanvasStore } from "@/types/types";
+import { CurrCanvasStore } from "types/types";
 
 export const useCurrCanvasStore = create<CurrCanvasStore>()(
   persist(

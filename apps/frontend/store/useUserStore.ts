@@ -1,4 +1,4 @@
-import { UserStore } from "@/types/types";
+import { UserStore } from "types/types";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 

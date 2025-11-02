@@ -1,12 +1,12 @@
 "use client";
 
-import { APP_URL } from "@/config";
-import useSocket from "@/hooks/useSocket";
+import { APP_URL } from "config";
+import useSocket from "hooks/useSocket";
 import toast from "react-hot-toast";
 import { usePathname } from "next/navigation";
-import { useParticipantsStore } from "@/store/useParticipantsStore";
+import { useParticipantsStore } from "store/useParticipantsStore";
 import React, { useState } from "react";
-import { Button } from "@/components/ui/button";
+import { Button } from "components/ui/button";
 import { Check, Copy, X } from "lucide-react";
 
 interface CollabPanelProps {
