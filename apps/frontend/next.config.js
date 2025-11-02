@@ -15,6 +15,8 @@ const nextConfig = {
       },
     ],
   },
+  transpilePackages: ["@repo/common", "@repo/ui", "@repo/db", "@repo/kafka"],
+  reactStrictMode: true,
 };
 
 export default nextConfig;
