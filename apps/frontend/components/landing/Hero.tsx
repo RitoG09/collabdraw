@@ -3,9 +3,9 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { Header } from "./Header";
-import { AnimatedGroup } from "components/ui/animated-group";
-import { TextEffect } from "components/ui/text-effect";
-import { Button } from "components/ui/button";
+import { AnimatedGroup } from "../ui/animated-group";
+import { TextEffect } from "../ui/text-effect";
+import { Button } from "../ui/button";
 
 const transitionVariants = {
   item: {
