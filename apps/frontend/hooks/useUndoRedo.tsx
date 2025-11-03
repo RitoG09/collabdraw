@@ -1,6 +1,6 @@
 import { ShapeType } from "@repo/common";
-import { useIndexStore } from "store/useIndexStore";
-import { useCurrCanvasStore } from "store/useCurrCanvasStore";
+import { useIndexStore } from "../store/useIndexStore";
+import { useCurrCanvasStore } from "../store/useCurrCanvasStore";
 
 export default function useUndoRedo() {
   const currCanvas = useCurrCanvasStore((s) => s.currCanvas);

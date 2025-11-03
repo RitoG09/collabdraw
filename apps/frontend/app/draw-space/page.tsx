@@ -1,12 +1,14 @@
 "use client";
 
 import React, { useState } from "react";
-import ProtectedRoute from "components/own/protectedRoute";
-import { useUserStore } from "store/useUserStore";
+
 import { Dancing_Script } from "next/font/google";
-import { Button } from "components/ui/button";
+
 import { LogOut, Settings, User } from "lucide-react";
-import ExpandableCardDemoGrid from "components/expandable-card-demo-grid";
+import { useUserStore } from "../../store/useUserStore";
+import ProtectedRoute from "../../components/own/protectedRoute";
+import { Button } from "../../components/ui/button";
+import ExpandableCardDemoGrid from "../../components/expandable-card-demo-grid";
 
 const dancingScript = Dancing_Script({
   weight: "700",

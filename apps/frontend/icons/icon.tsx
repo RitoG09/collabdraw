@@ -1,4 +1,4 @@
-import { useActiveStore } from "store/useActiveStore";
+import { useActiveStore } from "../store/useActiveStore";
 
 export function Circle() {
   const activeTool = useActiveStore((s) => s.activeTool);

@@ -1,11 +1,12 @@
 import React from "react";
-import { Button } from "components/ui/button";
-import { Input } from "components/ui/input";
+
 import toast from "react-hot-toast";
 import { useState } from "react";
-import useSocket from "hooks/useSocket";
-import useSession from "hooks/useSession";
-import { Label } from "components/ui/label";
+import useSession from "../../../hooks/useSession";
+import useSocket from "../../../hooks/useSocket";
+import { Button } from "../../ui/button";
+import { Input } from "../../ui/input";
+import { Label } from "@radix-ui/react-label";
 
 export default function JoinRoom() {
   const [link, setLink] = useState("");

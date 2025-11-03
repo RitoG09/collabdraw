@@ -1,6 +1,7 @@
-import { verifyUser } from "api/auth";
+
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { verifyUser } from "../api/auth";
 
 export default function useProtection() {
   const router = useRouter();

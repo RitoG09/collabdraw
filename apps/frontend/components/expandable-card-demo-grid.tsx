@@ -2,9 +2,9 @@
 
 import React, { useEffect, useId, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { useOutsideClick } from "hooks/use-outside-click";
 import JoinRoom from "./own/draw-space/join-room";
 import CreateRoom from "./own/draw-space/create-room";
+import { useOutsideClick } from "../hooks/use-outside-click";
 
 export default function ExpandableCardDemoGrid() {
   const [active, setActive] = useState<(typeof cards)[number] | boolean | null>(

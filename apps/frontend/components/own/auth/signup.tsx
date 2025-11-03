@@ -1,9 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import {
   Card,
-  CardAction,
   CardContent,
   CardDescription,
   CardFooter,
@@ -19,10 +18,9 @@ import { useRouter } from "next/navigation";
 import { signUpSchema } from "@repo/common";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowRight } from "lucide-react";
-import Link from "next/link";
 import toast from "react-hot-toast";
-import { signup } from "api/auth";
-import { useUserStore } from "store/useUserStore";
+import { useUserStore } from "../../../store/useUserStore";
+import { signup } from "../../../api/auth";
 
 type signupForm = z.infer<typeof signUpSchema>;
 

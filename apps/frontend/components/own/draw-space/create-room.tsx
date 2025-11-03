@@ -1,13 +1,14 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { nanoid } from "nanoid";
-import { createRoom } from "api/room";
-import { Label } from "components/ui/label";
-import { Input } from "components/ui/input";
-import { Button } from "components/ui/button";
+
 import { Check, Copy } from "lucide-react";
-import useSocket from "hooks/useSocket";
-import useSession from "hooks/useSession";
+import useSocket from "../../../hooks/useSocket";
+import useSession from "../../../hooks/useSession";
+import { createRoom } from "../../../api/room";
+import { Label } from "@radix-ui/react-label";
+import { Input } from "../../ui/input";
+import { Button } from "../../ui/button";
 
 export default function CreateRoom({ setCreateRoom }: any) {
   const [roomLink, setRoomLink] = useState("");

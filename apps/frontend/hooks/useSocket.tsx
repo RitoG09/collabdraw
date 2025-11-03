@@ -1,17 +1,23 @@
 "use client";
 
-import { WS_URL } from "config";
-import { ESocketStatus } from "types/types";
-import { act, useCallback, useEffect } from "react";
+// import { WS_URL } from "config";
+// import { ESocketStatus } from "types/types";
+import {  useCallback, useEffect } from "react";
 import toast from "react-hot-toast";
 import useSession from "./useSession";
-import { useSocketStatusStore } from "store/useSockerStatusStore";
-import { useParticipantsStore } from "store/useParticipantsStore";
-import { useShapeStore } from "store/useShapeStore";
+// import { useSocketStatusStore } from "store/useSockerStatusStore";
+// import { useParticipantsStore } from "store/useParticipantsStore";
+// import { useShapeStore } from "store/useShapeStore";
 import { Shapes } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { ShapeType } from "@repo/common";
-import { useChatStore } from "store/useChatStore";
+import { useChatStore } from "../store/useChatStore";
+import { useShapeStore } from "../store/useShapeStore";
+import { useParticipantsStore } from "../store/useParticipantsStore";
+import { useSocketStatusStore } from "../store/useSockerStatusStore";
+import { ESocketStatus } from "../types/types";
+import { WS_URL } from "../config";
+// import { useChatStore } from "store/useChatStore";
 
 let wsInstance: WebSocket | null = null;
 let connectionQueue: (() => void)[] = [];

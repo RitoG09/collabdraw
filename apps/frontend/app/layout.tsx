@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Space_Grotesk } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "components/ui/theme-provider";
 import { Toaster } from "react-hot-toast";
+import { ThemeProvider } from "../components/ui/theme-provider";
 
 // const geistSans = localFont({
 //   src: "./fonts/GeistVF.woff",

@@ -1,21 +1,21 @@
 "use client";
 
+import { ReactNode, useState } from "react";
+import { ToolType } from "../../../types/types";
+import { useActiveStore } from "../../../store/useActiveStore";
+import { Button } from "../../ui/button";
 import {
   Arrow,
   Circle,
   Diamond,
   Eraser,
-  Pan,
   Line,
+  Pan,
   Pencil,
   Rectangle,
   Select,
   Text,
-} from "icons/icon";
-import { ToolType } from "types/types";
-import { useActiveStore } from "store/useActiveStore";
-import { ReactNode, useState } from "react";
-import { Button } from "components/ui/button";
+} from "../../../icons/icon";
 
 export function Tool({
   children,

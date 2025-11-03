@@ -1,17 +1,5 @@
 "use client";
 
-import { signin } from "api/auth";
-import { Button } from "components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "components/ui/card";
-import { Input } from "components/ui/input";
-import { useUserStore } from "store/useUserStore";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Label } from "@radix-ui/react-label";
 import { signInSchema } from "@repo/common";
@@ -21,6 +9,18 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import z from "zod";
+import { signin } from "../../../api/auth";
+import { useUserStore } from "../../../store/useUserStore";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "../../ui/card";
+import { Input } from "../../ui/input";
+import { Button } from "../../ui/button";
 
 type signinForm = z.infer<typeof signInSchema>;
 
