@@ -2,16 +2,10 @@ import React from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
-import { TextEffect } from "components/ui/text-effect";
-import { Dancing_Script } from "next/font/google";
+import { TextEffect } from "@/components/ui/text-effect";
 import { Header } from "./Header";
-import { Button } from "components/ui/button";
-import { AnimatedGroup } from "../ui/animated-group";
-
-const dancingScript = Dancing_Script({
-  weight: "700",
-  subsets: ["latin"],
-});
+import { Button } from "@/components/ui/button";
+import { AnimatedGroup } from "@/components/ui/animated-group";
 
 const transitionVariants = {
   item: {
