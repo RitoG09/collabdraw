@@ -32,7 +32,7 @@ const nextConfig = {
       { protocol: "https", hostname: "html.tailus.io" },
     ],
   },
-  transpilePackages: ["@repo/common", "@repo/ui", "@repo/db", "@repo/kafka"],
+  transpilePackages: ["@repo/common", "@repo/db", "@repo/kafka"],
   reactStrictMode: true,
 
   webpack: (config) => {
