@@ -1,5 +1,5 @@
-import { HTTP_URL } from "config";
 import axios, { AxiosError } from "axios";
+import { HTTP_URL } from "../config";
 
 export const signup = async (userData: {
   username: string;
