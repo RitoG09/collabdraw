@@ -5,7 +5,15 @@ import roomRouter from "./routes/room.route.js";
 
 const app: Express = express();
 
-app.use(cors());
+// Configure CORS to allow both localhost and Vercel domain
+app.use(
+  cors({
+    origin: ["http://localhost:3000", "https://collabdraw-peach.vercel.app"],
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 app.use(express.json());
 
 app.get("/", (req, res) => {
