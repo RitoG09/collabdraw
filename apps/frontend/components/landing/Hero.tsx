@@ -11,7 +11,7 @@ const transitionVariants = {
   item: {
     hidden: {
       opacity: 0,
-      filter: "blur(13px)",
+      filter: "blur(12px)",
       y: 12,
     },
     visible: {
