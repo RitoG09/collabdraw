@@ -9,6 +9,7 @@ import { useUserStore } from "../../store/useUserStore";
 import ProtectedRoute from "../../components/own/protectedRoute";
 import { Button } from "../../components/ui/button";
 import ExpandableCardDemoGrid from "../../components/expandable-card-demo-grid";
+import { useRouter } from "next/navigation";
 
 const dancingScript = Dancing_Script({
   weight: "700",
@@ -16,6 +17,7 @@ const dancingScript = Dancing_Script({
 });
 
 export default function DrawSpace() {
+  const router = useRouter();
   const user = useUserStore((s) => s.user);
   const [joinRoom, setJoinRoom] = useState(false);
   const [createRoom, setCreateRoom] = useState(false);
@@ -27,8 +29,9 @@ export default function DrawSpace() {
   };
 
   const handleLogoutClick = () => {
-    console.log("Logout clicked");
-    setIsDropdownOpen(false);
+    localStorage.removeItem("token");
+    useUserStore.getState().setUser({ username: "", email: "" });
+    router.push("/signin");
   };
 
   return (
@@ -67,14 +70,6 @@ export default function DrawSpace() {
                   />
                   <div className="absolute right-0 left-1 mt-4 w-40 bg-gray-700 backdrop-blur-sm border-2 border-yellow-800 rounded-lg shadow-xl z-20">
                     <div className="py-2">
-                      <button
-                        onClick={handleProfileClick}
-                        className="w-full flex items-center px-4 py-3 text-white hover:bg-white/10 transition-colors text-left"
-                      >
-                        <Settings className="w-4 h-4 mr-3" />
-                        Profile
-                      </button>
-                      <hr className="border-white/10 mx-2" />
                       <button
                         onClick={handleLogoutClick}
                         className="w-full flex items-center px-4 py-3 text-red-400 hover:bg-red-500/10 transition-colors text-left"
