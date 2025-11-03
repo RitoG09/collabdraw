@@ -15,13 +15,6 @@
 // };
 
 // export default nextConfig;
-
-import path from "path";
-import { fileURLToPath } from "url";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   eslint: { ignoreDuringBuilds: true },
@@ -34,16 +27,7 @@ const nextConfig = {
   },
   transpilePackages: ["@repo/common", "@repo/db", "@repo/kafka"],
   reactStrictMode: true,
-
-  webpack: (config) => {
-    config.resolve.alias["@"] = path.resolve(__dirname, ".");
-    config.resolve.alias["@components"] = path.resolve(__dirname, "components");
-    config.resolve.alias["@lib"] = path.resolve(__dirname, "lib");
-    config.resolve.alias["@hooks"] = path.resolve(__dirname, "hooks");
-    config.resolve.alias["@utils"] = path.resolve(__dirname, "utils");
-    config.resolve.alias["@store"] = path.resolve(__dirname, "store");
-    return config;
-  },
+  // Remove the webpack config section
 };
 
 export default nextConfig;
