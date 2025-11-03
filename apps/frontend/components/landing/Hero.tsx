@@ -6,7 +6,7 @@ import { TextEffect } from "components/ui/text-effect";
 import { Dancing_Script } from "next/font/google";
 import { Header } from "./Header";
 import { Button } from "components/ui/button";
-import { AnimatedGroup } from "components/ui/animated-group";
+import { AnimatedGroup } from "@/components/ui/animated-group";
 
 const dancingScript = Dancing_Script({
   weight: "700",
