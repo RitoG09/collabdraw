@@ -1,6 +1,6 @@
 import useSocket from "hooks/useSocket";
 import useUndoRedo from "hooks/useUndoRedo";
-import { DimentionType, ShapeType } from "@repo/common/types";
+import { DimentionType, ShapeType } from "@repo/common";
 import { v4 as uuidv4 } from "uuid";
 import useSession from "hooks/useSession";
 import { TextInput } from "types/types";

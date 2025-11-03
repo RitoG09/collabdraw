@@ -1,4 +1,4 @@
-import { createRoomSchema } from "@repo/common/types";
+import { createRoomSchema } from "@repo/common";
 import { customRequest } from "../express.js";
 import { Response } from "express";
 import { emitError, emitSuccess } from "../utils/response.js";

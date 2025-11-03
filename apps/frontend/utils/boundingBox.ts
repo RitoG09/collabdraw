@@ -1,4 +1,4 @@
-import { DimentionType, ShapeType } from "@repo/common/types";
+import { DimentionType, ShapeType } from "@repo/common";
 import { RoughGenerator } from "roughjs/bin/generator";
 
 export function getHandlerPositions(box: any, pad = 4) {

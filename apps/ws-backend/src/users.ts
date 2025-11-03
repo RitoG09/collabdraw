@@ -1,7 +1,7 @@
 import WebSocket from "ws";
 import { prismaClient } from "@repo/db/client";
 import { IUser } from "./types.js";
-import { ShapeType } from "@repo/common/types";
+import { ShapeType } from "@repo/common";
 import { produceMessage } from "@repo/kafka/config";
 
 interface IShapeOperation {

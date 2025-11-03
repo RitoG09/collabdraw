@@ -10,7 +10,7 @@
       "@hooks/*": ["hooks/*"],
       "@utils/*": ["utils/*"],
       "@store/*": ["store/*"],
-      "@repo/common/*": ["../../packages/common/*"],
+      "@repo/common": ["../../packages/common/src/types.ts"],
       "@repo/typescript-config/*": ["../../packages/typescript-config/*"]
     }
   },

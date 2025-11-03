@@ -16,7 +16,7 @@ import { Label } from "../../ui/label";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { useRouter } from "next/navigation";
-import { signUpSchema } from "@repo/common/types";
+import { signUpSchema } from "@repo/common";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";

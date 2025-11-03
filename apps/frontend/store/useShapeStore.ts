@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { ShapeType } from "@repo/common/types";
+import { ShapeType } from "@repo/common";
 import { ShapeStore } from "types/types";
 import { SetStateAction } from "react";
 

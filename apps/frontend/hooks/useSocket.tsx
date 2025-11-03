@@ -10,7 +10,7 @@ import { useParticipantsStore } from "store/useParticipantsStore";
 import { useShapeStore } from "store/useShapeStore";
 import { Shapes } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
-import { ShapeType } from "@repo/common/types";
+import { ShapeType } from "@repo/common";
 import { useChatStore } from "store/useChatStore";
 
 let wsInstance: WebSocket | null = null;

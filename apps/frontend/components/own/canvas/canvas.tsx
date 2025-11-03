@@ -22,7 +22,7 @@ import useSession from "hooks/useSession";
 import { v4 as uuidv4 } from "uuid";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { DimentionType, ShapeType } from "@repo/common/types";
+import { DimentionType, ShapeType } from "@repo/common";
 import rough from "roughjs";
 import { useRef } from "react";
 import {

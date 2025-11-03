@@ -1,6 +1,6 @@
-import { ShapeType } from "@repo/common/types";
+import { ShapeType } from "@repo/common";
 import { SetStateAction } from "react";
-import { DimentionType } from "@repo/common/types";
+import { DimentionType } from "@repo/common";
 
 export type User = {
   username: string;

@@ -3,7 +3,7 @@ import { generateToken } from "../utils/token.js";
 import bcrypt from "bcrypt";
 import { emitError, emitSuccess } from "../utils/response.js";
 import { customRequest } from "../express.js";
-import { signInSchema, signUpSchema } from "@repo/common/types";
+import { signInSchema, signUpSchema } from "@repo/common";
 import { prismaClient } from "@repo/db/client";
 
 export const signup = async (req: Request, res: Response) => {

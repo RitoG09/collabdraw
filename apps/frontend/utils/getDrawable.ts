@@ -1,4 +1,4 @@
-import { DimentionType, ShapeType } from "@repo/common/types";
+import { DimentionType, ShapeType } from "@repo/common";
 import { RoughGenerator } from "roughjs/bin/generator";
 import { getSvgPathFromStroke } from "./getSvgPathFromStroke";
 import { getStroke } from "perfect-freehand";

@@ -1,5 +1,5 @@
 import { ToolType } from "types/types";
-import { DimentionType, ShapeType } from "@repo/common/types";
+import { DimentionType, ShapeType } from "@repo/common";
 import { Dispatch, SetStateAction } from "react";
 import { getBoundingBox } from "../boundingBox";
 import { v4 as uuidv4 } from "uuid";

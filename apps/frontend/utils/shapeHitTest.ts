@@ -1,4 +1,4 @@
-import { DimentionType, ShapeType } from "@repo/common/types";
+import { DimentionType, ShapeType } from "@repo/common";
 import { getBoundingBox } from "./boundingBox";
 
 export function isPointInsideOrOnBoundingBox(

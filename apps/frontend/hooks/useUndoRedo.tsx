@@ -1,4 +1,4 @@
-import { ShapeType } from "@repo/common/types";
+import { ShapeType } from "@repo/common";
 import { useIndexStore } from "store/useIndexStore";
 import { useCurrCanvasStore } from "store/useCurrCanvasStore";
 

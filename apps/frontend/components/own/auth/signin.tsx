@@ -14,7 +14,7 @@ import { Input } from "components/ui/input";
 import { useUserStore } from "store/useUserStore";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Label } from "@radix-ui/react-label";
-import { signInSchema } from "@repo/common/types";
+import { signInSchema } from "@repo/common";
 import { ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React from "react";
