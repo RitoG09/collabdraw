@@ -105,7 +105,7 @@ export const getText = (
   if (shape.type !== "text") return;
 
   ctx.font = shape.font || "24px 'Indie Flower'";
-  ctx.fillStyle = "#0ff";
+  ctx.fillStyle = "#c4ac0c";
   ctx.textBaseline = "top";
   ctx.fillText(shape.text, shape.x - panOffset.x, shape.y - panOffset.y);
 };
@@ -128,6 +128,6 @@ export const freeDraw = (
   });
 
   const path = getSvgPathFromStroke(stroke);
-  ctx.fillStyle = "#0ff";
+  ctx.fillStyle = "#c4ac0c";
   ctx.fill(new Path2D(path));
 };

@@ -9,14 +9,14 @@ const dancingScript = Dancing_Script({
 export function Footer() {
   const socialLinks = [
     {
-      icon: <Github className="w-6 h-6 hover:text-cyan-400 transition" />,
+      icon: <Github className="w-6 h-6 hover:text-yellow-400 transition" />,
       href: "https://github.com/RitoG09",
       label: "GitHub",
     },
 
     {
       icon: (
-        <Twitter className="w-6 h-6 text-cyan-400 hover:text-cyan-300 transition" />
+        <Twitter className="w-6 h-6 text-yellow-400 hover:text-cyan-300 transition" />
       ),
       href: "https://x.com/RitoGhosh10",
       label: "Twitter",

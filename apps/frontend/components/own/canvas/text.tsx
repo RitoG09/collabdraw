@@ -54,7 +54,7 @@ export function Text({
               y: textInput.cords.y,
               text: textInput.value,
               font: "24px 'Indie Flower'",
-              color: "",
+              color: "#ffe60",
             };
 
             if (mode === "collaboration" && roomId) {

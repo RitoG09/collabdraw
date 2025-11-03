@@ -104,7 +104,7 @@ export function drawBoundingBoxAndHandlers(
     pos.paddedBox.maxX - pos.paddedBox.minX,
     pos.paddedBox.maxY - pos.paddedBox.minY,
     {
-      stroke: "#00cccc",
+      stroke: "#a8050d",
       strokeWidth: 0.7,
       roughness: 0.001,
       seed: 278,
@@ -122,7 +122,7 @@ export function drawBoundingBoxAndHandlers(
       h.y - panOffset.y,
       handleSize,
       {
-        stroke: "#00FFFFaa",
+        stroke: "#a8050d",
         fillStyle: "",
         roughness: 0.001,
         strokeWidth: 3,
