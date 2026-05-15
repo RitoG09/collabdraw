@@ -54,13 +54,16 @@ export const processShapeQueue = async () => {
     try {
       if (operation.type === "create") {
         await prismaClient.shape.create({ data: operation.data });
+        console.log(operation.data);
       } else if (operation.type === "update") {
         await prismaClient.shape.update({
           where: { id: operation.data.id },
           data: { shape: operation.data.shape },
         });
+        console.log(operation.data);
       } else if (operation.type === "delete") {
         await prismaClient.shape.delete({ where: { id: operation.shapeId } });
+        console.log(operation.data);
       }
     } catch (error) {
       console.error("Error processing shape operation:", error);
@@ -73,11 +76,11 @@ export const processShapeQueue = async () => {
 export const establishConnection = (
   ws: WebSocket,
   userId: string,
-  username: string
+  username: string,
 ) => {
   users.set(userId, { ws, userId, username, rooms: new Set() });
   console.log(
-    `connection established for ${username} and total size of the room is ${users.size}`
+    `connection established for ${username} and total size of the room is ${users.size}`,
   );
 };
 
@@ -162,7 +165,7 @@ export const leaveRoom = async (userId: string, roomId: string) => {
 export const createShape = async (
   userId: string,
   shape: ShapeType,
-  roomId: string
+  roomId: string,
 ) => {
   if (!(await roomExists(roomId))) return;
   broadcastToRoom(roomId, {
@@ -185,7 +188,7 @@ export const createShape = async (
 export const updateShape = async (
   userId: string,
   shape: ShapeType,
-  roomId: string
+  roomId: string,
 ) => {
   if (!(await roomExists(roomId))) return;
 
@@ -208,7 +211,7 @@ export const updateShape = async (
 export const deleteShape = async (
   userId: string,
   shapeId: string,
-  roomId: string
+  roomId: string,
 ) => {
   if (!(await roomExists(roomId))) return;
 
